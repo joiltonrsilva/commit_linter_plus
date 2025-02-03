@@ -1,5 +1,5 @@
 
-from task_commit.task_commit import git_commit
+from task_commit.core import git_commit
 
 def commit():
     git_commit()

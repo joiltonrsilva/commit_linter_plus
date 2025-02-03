@@ -1,4 +1,3 @@
-import subprocess
 from .utils import color_text, get_git_user, check_git_status, add_changes, create_commit, handle_git_flow, execute_push, is_git_flow, get_current_branch
 
 def git_commit():
@@ -56,6 +55,3 @@ def git_commit():
     except Exception as error:
         print(color_text(f"❌ Erro inesperado: {error}", "red"))
         exit(1)
-
-def __init__():
-    git_commit()
