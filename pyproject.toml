@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "task-commit"
+version = "0.1.2"
+description = "Ferramenta para auxiliar os commits, junto com git flow ela também fornece auxílio."
+authors = ["Walefy Lima <walefylima@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/WalefyHG/Task_Commit"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2.5"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest-mock = "^3.14.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+task_commit = "task_commit.main:main"
