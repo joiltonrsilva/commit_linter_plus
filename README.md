@@ -1,19 +1,18 @@
 # Task Commit
 
-Ferramenta para commits automatizados seguindo o padrão Conventional Commits e Git Flow.
+Tool for formatting commits following the Conventional Commits pattern and recognizing Git Flow branches.
 
-## Instalação
+## Installation
 
-Para instalar o pacote, use:
+To install the package, use:
 
 ```bash
 pip install task_commit
 ```
 
+## Usage
 
-## Utilização
-
-Para utilizar digite
+To use, type
 
 ```bash
 task_commit
