@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "task-commit"
-version = "0.1.2"
+version = "0.1.3"
 description = "Ferramenta para auxiliar os commits, junto com git flow ela também fornece auxílio."
 authors = ["Walefy Lima <walefylima@gmail.com>"]
 license = "MIT"
