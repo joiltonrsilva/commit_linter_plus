@@ -16,6 +16,7 @@ pytest = "^6.2.5"
 
 [tool.poetry.group.dev.dependencies]
 pytest-mock = "^3.14.0"
+ruff = "^0.9.4"
 
 [build-system]
 requires = ["poetry-core"]
@@ -23,3 +24,19 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
 task_commit = "task_commit.main:main"
+
+
+[tool.ruff]
+line-length = 79
+
+[tool.ruff.lint]
+preview = true
+extend-select = ["E501"]
+select = ['I', 'F', 'E', 'W', 'PL', 'PT']
+
+[tool.ruff.lint.pylint]
+max-nested-blocks = 10
+
+[tool.ruff.format]
+preview = true
+quote-style = 'single'
