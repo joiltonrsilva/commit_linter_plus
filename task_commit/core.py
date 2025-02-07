@@ -1,5 +1,4 @@
 import sys
-from .utils import remove_excess_spaces
 
 from .utils import (
     add_changes,
@@ -13,6 +12,7 @@ from .utils import (
     handle_git_flow,
     is_git_flow,
 )
+from .utils import remove_excess_spaces
 
 
 def git_commit():  # noqa: PLR0912, PLR0915

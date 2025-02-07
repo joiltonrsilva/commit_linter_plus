@@ -92,7 +92,7 @@ def get_git_status() -> str | None:
 
         # Process each line of output
         for line in output.split("\n"):
-            status_code, file_path = line[:2].strip(), line[3:]
+            status_code, file_path = line[:2].strip(), line[2:].strip()
 
             if status_code in ("M", "A", "D", "R"):  # Modified, Added, Deleted, Renamed (Staged)
                 changes_staged.append(f"{file_path}")
