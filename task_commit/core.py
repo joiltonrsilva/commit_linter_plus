@@ -100,7 +100,6 @@ def git_commit():  # noqa: PLR0912, PLR0915
                     .lower()
                 )
             ).replace(' ', '_')
-            print(module)
             if not module:
                 print(color_text('❌ Módulo inválido!', 'red'))
                 return module_input()
@@ -170,7 +169,7 @@ def git_commit():  # noqa: PLR0912, PLR0915
         push_input()
 
     except KeyboardInterrupt:
-        print('\nSAINDO...')
+        print(color_text('\n 🚩 SAINDO', 'red'))
         sys.exit(0)
 
     except Exception as error:
