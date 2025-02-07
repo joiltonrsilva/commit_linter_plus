@@ -78,14 +78,48 @@ def get_git_status() -> str | None:
     Returns
     -------
     str or None
-    String with the status of the Git repository if found, otherwise None.
+        String with the formatted status of the Git repository if found, otherwise None.
     """
     try:
-        status = subprocess.check_output(['git', 'status']).strip()
-        return status
+        output = subprocess.check_output(['git', 'status', '--porcelain'], text=True).strip()
+
+        # if not output:
+        #     return color_text("✔ No changes detected", "green")
+
+        changes_not_staged = []
+        changes_staged = []
+        untracked_files = []
+
+        # Process each line of output
+        for line in output.split("\n"):
+            status_code, file_path = line[:2].strip(), line[3:]
+
+            if status_code in ("M", "A", "D", "R"):  # Modified, Added, Deleted, Renamed (Staged)
+                changes_staged.append(f"{file_path}")
+            elif status_code in (" M", " D"):  # Modified or deleted (Not Staged)
+                changes_not_staged.append(f"{file_path}")
+            elif status_code == "??":  # Untracked files
+                untracked_files.append(f"{file_path}")
+
+        # Format the output
+        result = []
+        if changes_not_staged:
+            result.append(color_text("📋 Changes not staged:", "yellow"))
+            result.extend(color_text(f"   🎯 {item}", "yellow") for item in changes_not_staged)
+            result.append("")
+        if changes_staged:
+            result.append(color_text("📝 Changes staged:", "green"))
+            result.extend(color_text(f"   🎯 {item}", "green") for item in changes_staged)
+            result.append("")
+        if untracked_files:
+            result.append(color_text("❌Untracked files:", "red"))
+            result.extend(color_text(f"   🎯 {item}", "red") for item in untracked_files)
+            result.append("")
+
+        return "\n".join(result)
+
     except subprocess.CalledProcessError as e:
-        print(color_text(f'❌ Erro ao verificar status do Git: {e}', 'red'))
-        return None
+        return color_text(f'❌ Erro ao verificar status do Git: {e}', 'red')
 
 
 def is_git_flow():

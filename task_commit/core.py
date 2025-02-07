@@ -1,4 +1,5 @@
 import sys
+from .utils import remove_excess_spaces
 
 from .utils import (
     add_changes,
@@ -22,7 +23,9 @@ def git_commit():  # noqa: PLR0912, PLR0915
             if not check_git_status():
                 print(color_text('✅ Não há mudanças para commit.', 'green'))
                 return sys.exit(0)
-            get_git_status()
+            git_status = get_git_status()
+            if git_status:
+                print(color_text(git_status, 'yellow'))
 
             add_all = (
                 input(
@@ -83,22 +86,34 @@ def git_commit():  # noqa: PLR0912, PLR0915
 
         commit_type = commit_type_input()
 
-        module = (
-            input(
-                color_text(
-                    '🗂️ Qual módulo foi alterado? '
-                    '(exemplo: core, api, models): ',
-                    'magenta',
+        def module_input():
+            module = remove_excess_spaces(
+                (
+                    input(
+                        color_text(
+                            '🗂️ Qual módulo foi alterado? '
+                            '(exemplo: core, api, models): ',
+                            'magenta',
+                        )
+                    )
+                    .strip()
+                    .lower()
                 )
-            )
-            .strip()
-            .lower()
-        )
+            ).replace(' ', '_')
+            print(module)
+            if not module:
+                print(color_text('❌ Módulo inválido!', 'red'))
+                return module_input()
+            return module
+
+        module = module_input()
 
         def commit_message_input():
-            commit_message = input(
-                color_text('📝 Digite a mensagem do commit: ', 'green')
-            ).strip()
+            commit_message = remove_excess_spaces(
+                    input(
+                    color_text('📝 Digite a mensagem do commit: ', 'green')
+                ).strip()
+            )
             if not commit_message:
                 print(
                     color_text('❌ Mensagem de commit é obrigatória!', 'red')
@@ -119,36 +134,40 @@ def git_commit():  # noqa: PLR0912, PLR0915
 
         create_commit(commit_type, module, commit_message, git_user)
 
-        push = (
-            input(
-                color_text(
-                    '🚀 Deseja fazer push para o repositório? '
-                    '(✅ s / ❌ n) [s]: ',
-                    'yellow',
+        def push_input():
+            push = (
+                input(
+                    color_text(
+                        '🚀 Deseja fazer push para o repositório? '
+                        '(✅ s / ❌ n) [s]: ',
+                        'yellow',
+                    )
                 )
+                .strip()
+                .lower()
+                or 's'
             )
-            .strip()
-            .lower()
-            or 's'
-        )
-        match push:
-            case 's':
-                current_branch = get_current_branch()
-                if is_git_flow() and current_branch:
-                    if (
-                        current_branch.startswith('feature/')
-                        or current_branch.startswith('hotfix/')
-                        or current_branch.startswith('release/')
-                    ):
-                        handle_git_flow(current_branch)
+            match push:
+                case 's':
+                    current_branch = get_current_branch()
+                    if is_git_flow() and current_branch:
+                        if (
+                            current_branch.startswith('feature/')
+                            or current_branch.startswith('hotfix/')
+                            or current_branch.startswith('release/')
+                        ):
+                            handle_git_flow(current_branch)
+                        else:
+                            execute_push(current_branch)
                     else:
                         execute_push(current_branch)
-                else:
-                    execute_push(current_branch)
-            case 'n':
-                print(color_text('❌ Push cancelado.', 'red'))
-            case _:
-                print(color_text('❌ Opção inválida!', 'red'))
+                case 'n':
+                    print(color_text('❌ Push cancelado.', 'red'))
+                case _:
+                    print(color_text('❌ Opção inválida!', 'red'))
+                    return push_input()
+
+        push_input()
 
     except KeyboardInterrupt:
         print('\nSAINDO...')
