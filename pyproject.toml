@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "task-commit"
-version = "0.1.5"
+version = "0.1.6"
 description = "Tool for formatting commits following the Conventional Commits pattern and recognizing Git Flow branches."
 authors = ["Walefy Lima <walefylima@gmail.com>"]
 license = "MIT"
