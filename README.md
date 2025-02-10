@@ -7,7 +7,7 @@ Tool for formatting commits following the Conventional Commits pattern and recog
 To install the package, use:
 
 ```bash
-pip install task_commit
+pip install task-commit
 ```
 
 ## Usage
