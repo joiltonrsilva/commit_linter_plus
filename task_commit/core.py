@@ -167,9 +167,11 @@ def git_commit():  # noqa: PLR0912, PLR0915
                     return push_input()
 
         send_commit = push_input()
-        print(send_commit)
         if send_commit:
             create_commit(commit_type, module, commit_message, git_user)
+        else:
+            print(color_text('❌ Push cancelado.', 'red'))
+            sys.exit(0)
 
     except KeyboardInterrupt:
         print(color_text('\n 🚩 SAINDO', 'red'))
