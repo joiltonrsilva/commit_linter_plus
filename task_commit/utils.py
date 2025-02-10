@@ -248,7 +248,6 @@ def handle_git_flow(branch):
             subprocess.run(
                 ['git', 'flow', branch.split('/')[0], 'publish'], check=True
             )
-            print(color_text('✅ Publish realizado no Git Flow!\n', 'green'))
         except subprocess.CalledProcessError as e:
             print(color_text(f'❌ Erro ao publicar branch: {e}', 'red'))
     elif action == 'finish':
@@ -256,7 +255,6 @@ def handle_git_flow(branch):
             subprocess.run(
                 ['git', 'flow', branch.split('/')[0], 'finish'], check=True
             )
-            print(color_text('✅ Finish realizado no Git Flow!\n', 'green'))
         except subprocess.CalledProcessError as e:
             print(color_text(f'❌ Erro ao finalizar branch: {e}', 'red'))
     else:
@@ -278,9 +276,6 @@ def execute_push(branch):
     """
     try:
         subprocess.run(['git', 'push', 'origin', branch], check=True)
-        print(
-            color_text(f'✅ Push realizado para a branch {branch}!\n', 'green')
-        )
     except subprocess.CalledProcessError as e:
         print(color_text(f'❌ Erro ao fazer push: {e}', 'red'))
 

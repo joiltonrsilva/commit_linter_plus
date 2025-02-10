@@ -131,8 +131,6 @@ def git_commit():  # noqa: PLR0912, PLR0915
             )
             return
 
-        create_commit(commit_type, module, commit_message, git_user)
-
         def push_input():
             push = (
                 input(
@@ -160,13 +158,18 @@ def git_commit():  # noqa: PLR0912, PLR0915
                             execute_push(current_branch)
                     else:
                         execute_push(current_branch)
+                    return True
                 case 'n':
                     print(color_text('❌ Push cancelado.', 'red'))
+                    return False
                 case _:
                     print(color_text('❌ Opção inválida!', 'red'))
                     return push_input()
 
-        push_input()
+        send_commit = push_input()
+        print(send_commit)
+        if send_commit:
+            create_commit(commit_type, module, commit_message, git_user)
 
     except KeyboardInterrupt:
         print(color_text('\n 🚩 SAINDO', 'red'))
