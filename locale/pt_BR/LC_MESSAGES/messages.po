@@ -1,0 +1,162 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-02-10 16:41-0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: task_commit/core.py:23
+msgid "y"
+msgstr ""
+
+#: task_commit/core.py:24
+msgid "n"
+msgstr ""
+
+#: task_commit/core.py:26
+msgid "Starting commit process"
+msgstr ""
+
+#: task_commit/core.py:36
+msgid "No changes to commit"
+msgstr ""
+
+#: task_commit/core.py:43
+msgid "Do you want to add all changes"
+msgstr ""
+
+#: task_commit/core.py:62
+msgid "Manually add the changes and run the command again"
+msgstr ""
+
+#: task_commit/core.py:72 task_commit/core.py:195
+msgid "Invalid option"
+msgstr ""
+
+#: task_commit/core.py:90
+msgid "Choose commit type"
+msgstr ""
+
+#: task_commit/core.py:102
+msgid "Invalid commit type"
+msgstr ""
+
+#: task_commit/core.py:111
+msgid "Which module was changed? (example: core, api, models): "
+msgstr ""
+
+#: task_commit/core.py:126
+msgid "Module is mandatory"
+msgstr ""
+
+#: task_commit/core.py:134
+msgid "Enter commit message"
+msgstr ""
+
+#: task_commit/core.py:141
+msgid "Commit message is mandatory"
+msgstr ""
+
+#: task_commit/core.py:152
+msgid "Error: Git username not set"
+msgstr ""
+
+#: task_commit/core.py:161
+msgid "Do you want to push to the repository"
+msgstr ""
+
+#: task_commit/core.py:191 task_commit/core.py:203
+msgid "Push canceled"
+msgstr ""
+
+#: task_commit/core.py:208
+msgid "Leaving..."
+msgstr ""
+
+#: task_commit/core.py:213
+msgid "Unexpected error"
+msgstr ""
+
+#: task_commit/utils.py:77
+msgid "Git user is required"
+msgstr ""
+
+#: task_commit/utils.py:85
+msgid "Error getting user from Git"
+msgstr ""
+
+#: task_commit/utils.py:105 task_commit/utils.py:162
+msgid "Error checking Git status"
+msgstr ""
+
+#: task_commit/utils.py:144
+msgid "Changes not staged"
+msgstr ""
+
+#: task_commit/utils.py:149
+msgid "Changes staged"
+msgstr ""
+
+#: task_commit/utils.py:154
+msgid "Untracked files"
+msgstr ""
+
+#: task_commit/utils.py:179
+msgid "Gitflow not installed, but push is successful"
+msgstr ""
+
+#: task_commit/utils.py:202
+msgid "Error getting current branch"
+msgstr ""
+
+#: task_commit/utils.py:218
+msgid "All changes added"
+msgstr ""
+
+#: task_commit/utils.py:221
+msgid "Error adding changes"
+msgstr ""
+
+#: task_commit/utils.py:249
+msgid "user"
+msgstr ""
+
+#: task_commit/utils.py:257
+msgid "Commit successful"
+msgstr ""
+
+#: task_commit/utils.py:260
+msgid "Error committing"
+msgstr ""
+
+#: task_commit/utils.py:284
+msgid "Do you want to 'publish' or 'finish' this branch?"
+msgstr ""
+
+#: task_commit/utils.py:302
+msgid "Error publishing branch"
+msgstr ""
+
+#: task_commit/utils.py:310
+msgid "Error finalizing branch"
+msgstr ""
+
+#: task_commit/utils.py:313
+msgid "Invalid action"
+msgstr ""
+
+#: task_commit/utils.py:333
+msgid "Error when pushing"
+msgstr ""

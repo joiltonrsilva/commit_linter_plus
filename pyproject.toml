@@ -6,6 +6,10 @@ authors = ["Walefy Lima <walefylima@gmail.com>"]
 license = "MIT"
 readme = "README.md"
 repository = "https://github.com/WalefyHG/Task_Commit"
+packages = [{ include = "task-commit" }]
+
+[tool.poetry.include]
+"locale/**/*" = { format = "binary" }
 
 [tool.poetry.dependencies]
 python = "^3.11"
