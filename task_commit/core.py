@@ -23,7 +23,7 @@ def git_commit():  # noqa: PLR0912, PLR0915
     message_yes: str = _('y')
     message_no: str = _('n')
     try:
-        message = _('Starting commit process')  # Iniciando processo de commit
+        message = _('Starting commit process')
         print(
             color_text(
                 f'\n🚀 {message}. 🚀\n',
@@ -33,14 +33,14 @@ def git_commit():  # noqa: PLR0912, PLR0915
 
         def check_status():
             if not check_git_status():
-                message = _('No changes to commit')  # Nenhuma mudança para commit
+                message = _('No changes to commit')
                 print(color_text(f'✅ {message}.', 'green'))
                 return sys.exit(0)
             git_status = get_git_status()
             if git_status:
                 print(color_text(git_status, 'yellow'))
 
-            message = _('Do you want to add all changes')  # Deseja adicionar todas as mudanças
+            message = _('Do you want to add all changes')
             add_all = (
                 input(
                     color_text(
@@ -59,7 +59,7 @@ def git_commit():  # noqa: PLR0912, PLR0915
                 add_changes()
             if add_all == message_no:
                 message = _(
-                    'Manually add the changes and run the command again'  # Adicione manualmente as mudanças e execute o comando novamente
+                    'Manually add the changes and run the command again'
                 )
                 print(
                     color_text(
@@ -69,7 +69,7 @@ def git_commit():  # noqa: PLR0912, PLR0915
                 )
                 return sys.exit(0)
             elif add_all not in {message_yes, message_no}:
-                message = _('Invalid option')  # Opção inválida
+                message = _('Invalid option')
                 print(color_text(f'❌ {message}!', 'red'))
                 return check_status()
 
@@ -87,7 +87,7 @@ def git_commit():  # noqa: PLR0912, PLR0915
                 'ci',
                 'perf',
             ]
-            message = _('Choose commit type')  # Escolha o tipo de commit
+            message = _('Choose commit type')
             commit_type = (
                 input(
                     color_text(
@@ -99,7 +99,7 @@ def git_commit():  # noqa: PLR0912, PLR0915
                 .lower()
             )
             if commit_type not in commit_type_choices:
-                message = _('Invalid commit type')  # Tipo de commit inválido
+                message = _('Invalid commit type')
                 print(color_text(f'❌ {message}', 'red'))
                 return commit_type_input()
             return commit_type
@@ -108,7 +108,7 @@ def git_commit():  # noqa: PLR0912, PLR0915
 
         def module_input():
             message = _(
-                'Which module was changed? (example: core, api, models): '  # Qual módulo foi alterado? (exemplo: core, api, models):
+                'Which module was changed? (example: core, api, models): '
             )
             module = remove_excess_spaces(
                 (
@@ -123,7 +123,7 @@ def git_commit():  # noqa: PLR0912, PLR0915
                 )
             ).replace(' ', '_')
             if not module:
-                message = _('Module is mandatory')  # Módulo é obrigatório
+                message = _('Module is mandatory')
                 print(color_text(f'❌ {message}', 'red'))
                 return module_input()
             return module
@@ -131,14 +131,14 @@ def git_commit():  # noqa: PLR0912, PLR0915
         module = module_input()
 
         def commit_message_input():
-            message = _('Enter commit message')  # Digite a mensagem do commit
+            message = _('Enter commit message')
             commit_message = remove_excess_spaces(
                     input(
                     color_text(f'📝 {message}: ', 'green')
                 ).strip()
             )
             if not commit_message:
-                message = _('Commit message is mandatory')  # Mensagem de commit é obrigatória
+                message = _('Commit message is mandatory')
                 print(
                     color_text(f'❌ {message}!', 'red')
                 )
@@ -149,7 +149,7 @@ def git_commit():  # noqa: PLR0912, PLR0915
 
         git_user = get_git_user()
         if git_user is None:
-            message = _('Error: Git username not set')  # Erro: Nome de usuário do Git não configurado
+            message = _('Error: Git username not set')
             print(
                 color_text(
                     f'❌ {message}!', 'red'
@@ -158,7 +158,7 @@ def git_commit():  # noqa: PLR0912, PLR0915
             return
 
         def push_input():
-            message = _('Do you want to push to the repository')  # Deseja fazer push para o repositório
+            message = _('Do you want to push to the repository')
             push = (
                 input(
                     color_text(
@@ -188,11 +188,11 @@ def git_commit():  # noqa: PLR0912, PLR0915
                     execute_push(current_branch)
                 return True
             if push == message_no:
-                message = _('Push canceled')  # Push cancelado
+                message = _('Push canceled')
                 print(color_text(f'❌ {message}.', 'red'))
                 return False
             else:
-                message = _('Invalid option')  # Opção inválida
+                message = _('Invalid option')
                 print(color_text(f'❌ {message}!', 'red'))
                 return push_input()
 
@@ -200,16 +200,16 @@ def git_commit():  # noqa: PLR0912, PLR0915
         if send_commit:
             create_commit(commit_type, module, commit_message, git_user)
         else:
-            message = _('Push canceled')  # Push cancelado
+            message = _('Push canceled')
             print(color_text(f'❌ {message}.', 'red'))
             sys.exit(0)
 
     except KeyboardInterrupt:
-        message = _('Leaving...')  # Saindo...
+        message = _('Leaving...')
         print(color_text(f'\n 🚩 {message}', 'red'))
         sys.exit(0)
 
     except Exception as error:
-        message = _('Unexpected error')  # Erro inesperado
+        message = _('Unexpected error')
         print(color_text(f'❌ {message}: {error}', 'red'))
         sys.exit(1)

@@ -14,149 +14,149 @@ msgstr ""
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: task_commit/core.py:23
 msgid "y"
-msgstr ""
+msgstr "s"
 
 #: task_commit/core.py:24
 msgid "n"
-msgstr ""
+msgstr "n"
 
 #: task_commit/core.py:26
 msgid "Starting commit process"
-msgstr ""
+msgstr "Iniciando processo de commit"
 
 #: task_commit/core.py:36
 msgid "No changes to commit"
-msgstr ""
+msgstr "Nenhuma mudança para commit"
 
 #: task_commit/core.py:43
 msgid "Do you want to add all changes"
-msgstr ""
+msgstr "Deseja adicionar todas as mudanças"
 
 #: task_commit/core.py:62
 msgid "Manually add the changes and run the command again"
-msgstr ""
+msgstr "Adicione manualmente as mudanças e execute o comando novamente"
 
 #: task_commit/core.py:72 task_commit/core.py:195
 msgid "Invalid option"
-msgstr ""
+msgstr "Opção inválida"
 
 #: task_commit/core.py:90
 msgid "Choose commit type"
-msgstr ""
+msgstr "Escolha o tipo de commit"
 
 #: task_commit/core.py:102
 msgid "Invalid commit type"
-msgstr ""
+msgstr "Tipo de commit inválido"
 
 #: task_commit/core.py:111
 msgid "Which module was changed? (example: core, api, models): "
-msgstr ""
+msgstr "Qual módulo foi alterado? (exemplo: core, api, models): "
 
 #: task_commit/core.py:126
 msgid "Module is mandatory"
-msgstr ""
+msgstr "Módulo é obrigatório"
 
 #: task_commit/core.py:134
 msgid "Enter commit message"
-msgstr ""
+msgstr "Digite a mensagem do commit"
 
 #: task_commit/core.py:141
 msgid "Commit message is mandatory"
-msgstr ""
+msgstr "Mensagem de commit é obrigatória"
 
 #: task_commit/core.py:152
 msgid "Error: Git username not set"
-msgstr ""
+msgstr "Erro: Nome de usuário do Git não configurado"
 
 #: task_commit/core.py:161
 msgid "Do you want to push to the repository"
-msgstr ""
+msgstr "Deseja fazer push para o repositório"
 
 #: task_commit/core.py:191 task_commit/core.py:203
 msgid "Push canceled"
-msgstr ""
+msgstr "Push cancelado"
 
 #: task_commit/core.py:208
 msgid "Leaving..."
-msgstr ""
+msgstr "Saindo..."
 
 #: task_commit/core.py:213
 msgid "Unexpected error"
-msgstr ""
+msgstr "Erro inesperado"
 
 #: task_commit/utils.py:77
 msgid "Git user is required"
-msgstr ""
+msgstr "Usuário do Git é obrigatório"
 
 #: task_commit/utils.py:85
 msgid "Error getting user from Git"
-msgstr ""
+msgstr "Error getting user from Git"
 
 #: task_commit/utils.py:105 task_commit/utils.py:162
 msgid "Error checking Git status"
-msgstr ""
+msgstr "Erro ao obter usuário do Git"
 
 #: task_commit/utils.py:144
 msgid "Changes not staged"
-msgstr ""
+msgstr "Mudanças não encenadas"
 
 #: task_commit/utils.py:149
 msgid "Changes staged"
-msgstr ""
+msgstr "Mudanças não encenadas"
 
 #: task_commit/utils.py:154
 msgid "Untracked files"
-msgstr ""
+msgstr "Arquivos não rastreados"
 
 #: task_commit/utils.py:179
 msgid "Gitflow not installed, but push is successful"
-msgstr ""
+msgstr "Gitflow nao instalado, mas o push é realizado"
 
 #: task_commit/utils.py:202
 msgid "Error getting current branch"
-msgstr ""
+msgstr "Erro ao obter branch atual"
 
 #: task_commit/utils.py:218
 msgid "All changes added"
-msgstr ""
+msgstr "Todas as mudanças adicionadas"
 
 #: task_commit/utils.py:221
 msgid "Error adding changes"
-msgstr ""
+msgstr "Erro ao adicionar mudanças"
 
 #: task_commit/utils.py:249
 msgid "user"
-msgstr ""
+msgstr "usuário"
 
 #: task_commit/utils.py:257
 msgid "Commit successful"
-msgstr ""
+msgstr "Commit realizado com sucesso"
 
 #: task_commit/utils.py:260
 msgid "Error committing"
-msgstr ""
+msgstr "Erro ao realizar commit"
 
 #: task_commit/utils.py:284
 msgid "Do you want to 'publish' or 'finish' this branch?"
-msgstr ""
+msgstr "Deseja 'publish' ou 'finish' essa branch"
 
 #: task_commit/utils.py:302
 msgid "Error publishing branch"
-msgstr ""
+msgstr "Erro ao publicar branch"
 
 #: task_commit/utils.py:310
 msgid "Error finalizing branch"
-msgstr ""
+msgstr "Erro ao finalizar branch"
 
 #: task_commit/utils.py:313
 msgid "Invalid action"
-msgstr ""
+msgstr "Ação inválida"
 
 #: task_commit/utils.py:333
 msgid "Error when pushing"
-msgstr ""
+msgstr "Erro ao fazer push"

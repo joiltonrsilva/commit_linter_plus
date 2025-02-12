@@ -8,19 +8,16 @@ readme = "README.md"
 repository = "https://github.com/WalefyHG/Task_Commit"
 packages = [{ include = "task-commit" }]
 
-[tool.poetry.include]
-"locale/**/*" = { format = "binary" }
+include = ["locale/**/*"]
 
 [tool.poetry.dependencies]
 python = "^3.11"
-
-[tool.poetry.dev-dependencies]
-pytest = "^6.2.5"
-
+poetry = "^2.0.1"
 
 [tool.poetry.group.dev.dependencies]
 pytest-mock = "^3.14.0"
 ruff = "^0.9.4"
+pytest = "^6.2.5"
 
 [build-system]
 requires = ["poetry-core"]
