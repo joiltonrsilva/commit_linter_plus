@@ -129,10 +129,6 @@ msgstr "Todas as mudanças adicionadas"
 msgid "Error adding changes"
 msgstr "Erro ao adicionar mudanças"
 
-#: task_commit/utils.py:249
-msgid "user"
-msgstr "usuário"
-
 #: task_commit/utils.py:257
 msgid "Commit successful"
 msgstr "Commit realizado com sucesso"

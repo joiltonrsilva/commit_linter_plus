@@ -246,9 +246,8 @@ def create_commit(commit_type, module, commit_message, git_user):
     """
     message: str = ''
     full_commit_message = f'{commit_type}({module}): {commit_message}'
-    message_user: str = _('user')  # usuário
     updated_commit_message = (
-        f'{full_commit_message} (👤 {message_user}: {git_user})'.lower()
+        f'{full_commit_message} (👤: {git_user})'.lower()
     )
     try:
         subprocess.run(
