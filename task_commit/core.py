@@ -156,6 +156,37 @@ def git_commit():  # noqa: PLR0912, PLR0915
                 )
             )
             return
+        
+        def send_commit_input():
+            message = _('Do you want to send the commit')
+            send_commit = (
+                input(
+                    color_text(
+                        f'🚀 {message}? '
+                        f'(✅ {message_yes} / ❌ {message_no}) '
+                        f'[{message_yes}]: ',
+                        'yellow',
+                    )
+                )
+                .strip()
+                .lower()
+                or {message_yes}
+            )
+
+            if send_commit == message_yes:
+                return True
+            if send_commit == message_no:
+                return False
+            else:
+                message = _('Invalid option')
+                print(color_text(f'❌ {message}!', 'red'))
+                return send_commit_input()
+        
+        if send_commit_input():
+            create_commit(commit_type, module, commit_message, git_user)
+        else:
+            message = _('Commit canceled')
+            print(color_text(f'❌ {message}.', 'red'))
 
         def push_input():
             message = _('Do you want to push to the repository')
@@ -196,13 +227,7 @@ def git_commit():  # noqa: PLR0912, PLR0915
                 print(color_text(f'❌ {message}!', 'red'))
                 return push_input()
 
-        send_commit = push_input()
-        if send_commit:
-            create_commit(commit_type, module, commit_message, git_user)
-        else:
-            message = _('Push canceled')
-            print(color_text(f'❌ {message}.', 'red'))
-            sys.exit(0)
+        push_input()
 
     except KeyboardInterrupt:
         message = _('Leaving...')
