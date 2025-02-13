@@ -3,7 +3,7 @@ from .core import git_commit
 
 def main():
     """
-    Função principal que chama a função git_commit, para realizar o commit.
+    Main function that calls the git_commit function to perform the commit.
     """
 
     git_commit()
