@@ -6,7 +6,7 @@ authors = ["Walefy Lima <walefylima@gmail.com>"]
 license = "MIT"
 readme = "README.md"
 repository = "https://github.com/WalefyHG/Task_Commit"
-packages = [{ include = "task-commit" }]
+packages = [{ include = "task_commit" }]
 
 include = ["locale/**/*"]
 
