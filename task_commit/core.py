@@ -11,65 +11,72 @@ from .utils import (
     get_git_user,
     handle_git_flow,
     is_git_flow,
+    get_translator,
 )
 from .utils import remove_excess_spaces
 
+_ = get_translator()
+
 
 def git_commit():  # noqa: PLR0912, PLR0915
+    message: str = ""
+    message_yes: str = _('y')
+    message_no: str = _('n')
     try:
-        print(color_text('\n🚀 Iniciando processo de commit 🚀\n', 'cyan'))
+        message = _('Starting commit process')
+        print(
+            color_text(
+                f'\n🚀 {message}. 🚀\n',
+                'cyan'
+            )
+        )
 
         def check_status():
             if not check_git_status():
-                print(color_text('✅ Não há mudanças para commit.', 'green'))
+                message = _('No changes to commit')
+                print(color_text(f'✅ {message}.', 'green'))
                 return sys.exit(0)
             git_status = get_git_status()
             if git_status:
                 print(color_text(git_status, 'yellow'))
 
+            message = _('Do you want to add all changes')
             add_all = (
                 input(
                     color_text(
-                        '📌 Deseja adicionar todas as mudanças? '
-                        '(✅ s / ❌ n) [s]: ',
+                        f'📌 {message}? '
+                        f'(✅ {message_yes} / ❌ {message_no}) '
+                        f'[{message_yes}]: ',
                         'yellow',
                     )
                 )
                 .strip()
                 .lower()
-                or 's'
+                or f'{message_yes}'
             )
-            match add_all:
-                case 's':
-                    add_changes()
-                case 'n':
-                    print(
-                        color_text(
-                            '❌ Adicione manualmente as mudanças e execute '
-                            'o comando novamente.',
-                            'red',
-                        )
+
+            if add_all == message_yes:
+                add_changes()
+            if add_all == message_no:
+                message = _(
+                    'Manually add the changes and run the command again'
+                )
+                print(
+                    color_text(
+                        f'❌ {message}.',
+                        'red',
                     )
-                    return sys.exit(0)
-                case _:
-                    print(color_text('❌ Opção inválida!', 'red'))
-                    return check_status()
+                )
+                return sys.exit(0)
+            elif add_all not in {message_yes, message_no}:
+                message = _('Invalid option')
+                print(color_text(f'❌ {message}!', 'red'))
+                return check_status()
 
         check_status()
 
         def commit_type_input():
-            commit_type = (
-                input(
-                    color_text(
-                        '🎯 Escolha o tipo de commit (feat, fix, chore, refactor, '  # noqa: E501
-                        'test, docs, style, ci, perf): ',
-                        'blue',
-                    )
-                )
-                .strip()
-                .lower()
-            )
-            if commit_type not in {
+            commit_type_choices: list[str] = [
                 'feat',
                 'fix',
                 'chore',
@@ -79,20 +86,35 @@ def git_commit():  # noqa: PLR0912, PLR0915
                 'style',
                 'ci',
                 'perf',
-            }:
-                print(color_text('❌ Tipo de commit inválido!', 'red'))
+            ]
+            message = _('Choose commit type')
+            commit_type = (
+                input(
+                    color_text(
+                        f'🎯 {message} {str(commit_type_choices)}: ',
+                        'blue',
+                    )
+                )
+                .strip()
+                .lower()
+            )
+            if commit_type not in commit_type_choices:
+                message = _('Invalid commit type')
+                print(color_text(f'❌ {message}', 'red'))
                 return commit_type_input()
             return commit_type
 
         commit_type = commit_type_input()
 
         def module_input():
+            message = _(
+                'Which module was changed? (example: core, api, models): '
+            )
             module = remove_excess_spaces(
                 (
                     input(
                         color_text(
-                            '🗂️ Qual módulo foi alterado? '
-                            '(exemplo: core, api, models): ',
+                            f'🗂️ {message}',
                             'magenta',
                         )
                     )
@@ -101,22 +123,25 @@ def git_commit():  # noqa: PLR0912, PLR0915
                 )
             ).replace(' ', '_')
             if not module:
-                print(color_text('❌ Módulo inválido!', 'red'))
+                message = _('Module is mandatory')
+                print(color_text(f'❌ {message}', 'red'))
                 return module_input()
             return module
 
         module = module_input()
 
         def commit_message_input():
+            message = _('Enter commit message')
             commit_message = remove_excess_spaces(
                     input(
-                    color_text('📝 Digite a mensagem do commit: ', 'green')
+                    color_text(f'📝 {message}: ', 'green')
                 ).strip()
             )
             if not commit_message:
+                message = _('Commit message is mandatory')
                 print(
-                    color_text('❌ Mensagem de commit é obrigatória!', 'red')
-                )  # noqa: E501
+                    color_text(f'❌ {message}!', 'red')
+                )
                 return commit_message_input()
             return commit_message
 
@@ -124,54 +149,67 @@ def git_commit():  # noqa: PLR0912, PLR0915
 
         git_user = get_git_user()
         if git_user is None:
+            message = _('Error: Git username not set')
             print(
                 color_text(
-                    '❌ Erro: Nome de usuário do Git não configurado!', 'red'
+                    f'❌ {message}!', 'red'
                 )
             )
             return
 
-        create_commit(commit_type, module, commit_message, git_user)
-
         def push_input():
+            message = _('Do you want to push to the repository')
             push = (
                 input(
                     color_text(
-                        '🚀 Deseja fazer push para o repositório? '
-                        '(✅ s / ❌ n) [s]: ',
+                        f'🚀 {message}? '
+                        f'(✅ {message_yes} / ❌ {message_no}) '
+                        f'[{message_yes}]: ',
                         'yellow',
                     )
                 )
                 .strip()
                 .lower()
-                or 's'
+                or {message_yes}
             )
-            match push:
-                case 's':
-                    current_branch = get_current_branch()
-                    if is_git_flow() and current_branch:
-                        if (
-                            current_branch.startswith('feature/')
-                            or current_branch.startswith('hotfix/')
-                            or current_branch.startswith('release/')
-                        ):
-                            handle_git_flow(current_branch)
-                        else:
-                            execute_push(current_branch)
+
+            if push == message_yes:
+                current_branch = get_current_branch()
+                if is_git_flow() and current_branch:
+                    if (
+                        current_branch.startswith('feature/')
+                        or current_branch.startswith('hotfix/')
+                        or current_branch.startswith('release/')
+                    ):
+                        handle_git_flow(current_branch)
                     else:
                         execute_push(current_branch)
-                case 'n':
-                    print(color_text('❌ Push cancelado.', 'red'))
-                case _:
-                    print(color_text('❌ Opção inválida!', 'red'))
-                    return push_input()
+                else:
+                    execute_push(current_branch)
+                return True
+            if push == message_no:
+                message = _('Push canceled')
+                print(color_text(f'❌ {message}.', 'red'))
+                return False
+            else:
+                message = _('Invalid option')
+                print(color_text(f'❌ {message}!', 'red'))
+                return push_input()
 
-        push_input()
+        send_commit = push_input()
+        if send_commit:
+            create_commit(commit_type, module, commit_message, git_user)
+        else:
+            message = _('Push canceled')
+            print(color_text(f'❌ {message}.', 'red'))
+            sys.exit(0)
 
     except KeyboardInterrupt:
-        print(color_text('\n 🚩 SAINDO', 'red'))
+        message = _('Leaving...')
+        print(color_text(f'\n 🚩 {message}', 'red'))
         sys.exit(0)
 
     except Exception as error:
-        print(color_text(f'❌ Erro inesperado: {error}', 'red'))
+        message = _('Unexpected error')
+        print(color_text(f'❌ {message}: {error}', 'red'))
         sys.exit(1)
