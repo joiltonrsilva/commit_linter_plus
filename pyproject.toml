@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "task-commit"
-version = "0.1.8"
+version = "0.1.10"
 description = "Tool for formatting commits following the Conventional Commits pattern and recognizing Git Flow branches."
 authors = ["Walefy Lima <walefylima@gmail.com>"]
 license = "MIT"
@@ -25,7 +25,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
 task_commit = "task_commit.main:main"
-
+task_commit_init = "task_commit.init:setup_git_hook"
 
 [tool.ruff]
 line-length = 79
