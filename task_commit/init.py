@@ -4,12 +4,13 @@ import re
 
 
 from .utils import get_translator
-
+from .utils import get_git_user
 _ = get_translator()
 
 HOOKS_DIR = ".git/hooks"
 HOOK_NAME = "commit-msg"
 HOOK_PATH = os.path.join(HOOKS_DIR, HOOK_NAME)
+GIT_USER = get_git_user()
 
 # Expressão regular para validar commits convencionais
 COMMIT_REGEX = r"^(feat|fix|chore|refactor|test|docs|style|ci|perf)(\(.+\))?: .{1,72}$"
@@ -36,6 +37,17 @@ HOOK_SCRIPT = (
         echo "Example: feat(core): Add new functionality"
         exit 1
     fi
+    
+    GIT_USER=$(git config --get user.name)
+
+    if [ -z "$GIT_USER" ]; then
+        GIT_USER="Unknown User"
+    fi
+
+    if [ "$2" = "merge" ] || [ -z "$2" ]; then
+        echo "\\nCo-authored-by: $GIT_USER" >> "$COMMIT_MSG_FILE"
+    fi
+    
     """
 )
 
