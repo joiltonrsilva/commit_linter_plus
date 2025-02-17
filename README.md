@@ -12,7 +12,14 @@ pip install task-commit
 
 ## Usage
 
-To use, type
+For first confugure repository:
+
+```bash
+task_commit_init
+
+```
+
+For commit:
 
 ```bash
 task_commit
