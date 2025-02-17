@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-13 11:21-0300\n"
+"POT-Creation-Date: 2025-02-17 10:19-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,6 +16,14 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: task_commit/init.py:48
+msgid "❌ .git/hooks directory not found. Please run inside a Git repository."
+msgstr "❌ Diretório .git/hooks não encontrado. Por favor, execute dentro de um repositório Git."
+
+#: task_commit/init.py:58
+msgid "✅ Commit-msg hook successfully configured!"
+msgstr "✅ Hook Commit-msg configurado com sucesso!"
 
 #: task_commit/core.py:23
 msgid "y"
@@ -164,6 +172,15 @@ msgstr "Ação inválida"
 #: task_commit/utils.py:332
 msgid "Error when pushing"
 msgstr "Erro ao fazer push"
+
+#~ msgid ""
+#~ "❌ Diretório .git/hooks não encontrado. Execute dentro de um repositório "
+#~ "Git."
+#~ msgstr ""
+#~ "❌ .git/hooks directory not found. Please run inside a Git repository."
+
+#~ msgid "✅ Hook de commit-msg configurado com sucesso!"
+#~ msgstr "✅ Commit-msg hook successfully configured!"
 
 #~ msgid "user"
 #~ msgstr "usuário"
