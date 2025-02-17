@@ -156,7 +156,7 @@ def git_commit():  # noqa: PLR0912, PLR0915
                 )
             )
             return
-        
+
         def send_commit_input():
             message = _('Do you want to send the commit')
             send_commit = (
@@ -181,7 +181,7 @@ def git_commit():  # noqa: PLR0912, PLR0915
                 message = _('Invalid option')
                 print(color_text(f'❌ {message}!', 'red'))
                 return send_commit_input()
-        
+
         if send_commit_input():
             create_commit(commit_type, module, commit_message, git_user)
         else:
