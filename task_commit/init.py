@@ -39,13 +39,14 @@ HOOK_SCRIPT = (
     fi
     
     GIT_USER=$(git config --get user.name)
+    [ -z "$GIT_USER" ] && GIT_USER="Unknown User"
 
-    if [ -z "$GIT_USER" ]; then
-        GIT_USER="Unknown User"
-    fi
+    # Obtém a branch de origem do merge
+    CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 
-    if [ "$2" = "merge" ] || [ -z "$2" ]; then
-        echo "\\nCo-authored-by: $GIT_USER" >> "$COMMIT_MSG_FILE"
+    # Padrões de branch do Git Flow
+    if echo "$CURRENT_BRANCH" | grep -Eq "^(feature|hotfix|release)/"; then
+        echo "\nCo-authored-by: $GIT_USER" >> "$COMMIT_MSG_FILE"
     fi
     
     """
