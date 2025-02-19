@@ -1,4 +1,5 @@
 import sys
+import inquirer
 
 from .utils import (
     add_changes,
@@ -76,33 +77,44 @@ def git_commit():  # noqa: PLR0912, PLR0915
         check_status()
 
         def commit_type_input():
+            
             commit_type_choices: list[str] = [
-                'feat',
-                'fix',
-                'chore',
-                'refactor',
-                'test',
-                'docs',
-                'style',
-                'ci',
-                'perf',
+                { 'name': '✨ feat - Nova funcionalidade', 'value': 'feat' },
+                { 'name': '🐛 fix - Correção de bug', 'value': 'fix' },
+                { 'name': '🛠️ refactor - Refatoração de código', 'value': 'refactor' },
+                { 'name': '📖 docs - Atualização de documentação', 'value': 'docs' },
+                { 'name': '🎨 style - Alterações de estilo', 'value': 'style' },
+                { 'name': '🚀 perf - Melhorias de performance', 'value': 'perf' },
+                { 'name': '✅ test - Adição/Correção de testes', 'value': 'test' },
+                { 'name': '⚙️ chore - Mudanças na configuração', 'value': 'chore' },
+                { 'name': '💚 ci - Alterações na integração contínua', 'value': 'ci' }
             ]
             message = _('Choose commit type')
-            commit_type = (
-                input(
-                    color_text(
-                        f'🎯 {message} {str(commit_type_choices)}: ',
-                        'blue',
-                    )
-                )
-                .strip()
-                .lower()
-            )
-            if commit_type not in commit_type_choices:
-                message = _('Invalid commit type')
-                print(color_text(f'❌ {message}', 'red'))
-                return commit_type_input()
-            return commit_type
+    
+            try:
+                questions = [
+                    inquirer.List('commit_type', 
+                                message=message, 
+                                choices=[commit['name'] for commit in commit_type_choices],
+                                carousel=True),
+                ]
+                
+                answers = inquirer.prompt(questions)
+                
+                if answers and 'commit_type' in answers:
+                    # Buscar o valor do tipo de commit selecionado
+                    selected_commit_type = next(commit['value'] for commit in commit_type_choices if commit['name'] == answers['commit_type'])
+                    return selected_commit_type
+                else:
+                    message = _('Invalid commit type')
+                    print(color_text(f'❌ {message}', 'red'))
+                    return commit_type_input()
+            
+            except KeyboardInterrupt:
+                message = _('Process interrupted. Exiting...')
+                print(color_text(f'🚩 {message}', 'red'))
+                sys.exit(0) 
+            
 
         commit_type = commit_type_input()
 
