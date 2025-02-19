@@ -3,7 +3,7 @@ import subprocess
 import sys
 from pathlib import Path
 
-from task_commit.utils import color_text
+from task_commit.utils import color_text, get_translator
 
 LOCALES_DIR = "locale"
 POT_FILE = os.path.join(LOCALES_DIR, "messages.pot")
@@ -87,15 +87,20 @@ LANGUAGES = {
     "zu": "Zulu"
 }
 
-
-def find_file(file, path):
-    caminho = list(Path(path).rglob(file))
-    return caminho[0] if caminho else None
+_ = get_translator()
 
 
-def find_python_files(directory):
-    """Percorre o diretório e retorna uma lista de todos os arquivos .py."""
+def find_file(file: str, path: str, list_return: bool = False) -> str|list:
+    path = list(Path(path).rglob(file))
+    if not list_return:
+        return path[0] if path else None
+    return path if path else None
+
+
+def find_python_files(directory) -> list:
+    """Walks through the directory and returns a list of all .py files."""
     python_files = []
+    python_files.append(__file__.split("/")[-1])
     for root, _, files in os.walk(directory):
         for file in files:
             if file.endswith(".py"):
@@ -103,71 +108,126 @@ def find_python_files(directory):
     return python_files
 
 
-def run_command(command):
-    """Executa um comando do sistema e verifica se ocorreu um erro."""
+def run_command(command) -> None:
+    """Executes a system command and checks if an error occurred."""
     result = subprocess.run(command, shell=True, capture_output=True, text=True)
     if result.returncode != 0:
-        print(color_text(f"❌ Error executing: {command}\n{result.stderr}", "red"))
+        message: str = _("Error executing command")
+        print(color_text(f"❌ {message}: {command}\n{result.stderr}", "red"))
         sys.exit(1)
 
 
-def update_translations():
-    """Gera o arquivo POT e atualiza as traduções existentes."""
-    # Descobre automaticamente todos os arquivos Python no projeto
+def update_translations() -> None:
+    """Generates the POT file and updates the existing translations."""
+    # Automatically discovers all Python files in the project
     args = sys.argv
     args = args[1:] if len(args) > 1 else None
     if args:
         print(args[0])
         match args[0]:
             case "addlanguage":
-                print("Adicionando idioma")
 
                 language = args[1] if len(args) > 1 else None
-                if not language:
-                    print(color_text("❌ Invalid language", "red"))
+                if not language or language not in LANGUAGES:
+                    message: str = _("Invalid language")
+                    print(color_text(f"❌ {message}", "red"))
+                else:
+                    message: str = _("Adding language")
+                    print(color_text(f"🌍 {message}: {language}", "green"))
+
+                    if not os.path.exists(LOCALES_DIR):
+                        os.mkdir(LOCALES_DIR)
+
+                    if not os.path.exists(os.path.join(LOCALES_DIR, language)):
+                        os.mkdir(os.path.join(LOCALES_DIR, language))
+                    else:
+                        message: str = _("Language already exists")
+                        print(color_text(f"⚠️ {message}", "yellow"))
+                        return
+
+                    if not os.path.exists(os.path.join(LOCALES_DIR, language, "LC_MESSAGES")):
+                        os.mkdir(os.path.join(LOCALES_DIR, language, "LC_MESSAGES"))
+
+                    if not os.path.exists(os.path.join(LOCALES_DIR, language, "LC_MESSAGES", "messages.po")):
+                        # Listing all Python files
+                        source_files = find_python_files(SOURCE_DIR)
+                        if not source_files:
+                            message: str = _("No Python files found for extraction")
+                            print(color_text(f"⚠️ {message}", "red"))
+                            return
+                        # Creating the .pot file
+                        run_command(f"xgettext -o {POT_FILE} {' '.join(source_files)}")
+
+                        # Copying the .po file
+                        os.system(f"cp {POT_FILE} {os.path.join(LOCALES_DIR, language, 'LC_MESSAGES', 'messages.po')}")
+
+                        # Removing the .pot file
+                        run_command(f"rm {POT_FILE}")
+
+                    message: str = _("Language added successfully!")
+                    print(color_text(f"✅ {message}", "green"))
+
             case "help":
                 print(
                     "\n\nCommands:\n"
                         "\n- python update_translations.py addlanguage [language]\n"
-                          "\tExample: python update_translations.py add_language pt_BR\n"
+                          "\tEx: python update_translations.py add_language pt_BR\n"
                         "- python update_translations.py help: help\n"
                         "- python update_translations.py: update translations\n"
                 )
             case _:
-                print(color_text("❌ Invalid command", "red"))
+                message: str = _("Invalid command")
+                print(color_text(f"❌ {message}", "red"))
         return 0
     else:
+        # Listing all Python files
         source_files = find_python_files(SOURCE_DIR)
 
-        print(color_text("📂 Python files found:", "green"))
+        message: str = _("Python files found:")
+        print(color_text(f"📂 {message}", "green"))
         for file in source_files:
             print(color_text(f"  📄 {file}", "green"))
 
         if not source_files:
-            print(color_text("⚠️ No Python files found for extraction.", "red"))
+            message: str = _("No Python files found for extraction")
+            print(color_text(f"⚠️ {message}", "red"))
             return
 
-        # Extraindo novas strings para o arquivo .pot
-        print(color_text("📥 Extracting strings to .pot file...", "green"))
+        # Extracting new strings into the .pot file
+        message: str = _("Extracting strings to .pot file...")
+        print(color_text(f"📥 {message}", "green"))
         run_command(f"xgettext -o {POT_FILE} {' '.join(source_files)}")
 
-        # Atualizando o arquivo .po sem perder traduções anteriores
-        if os.path.exists(PO_FILE):
-            print(color_text("📦 Updating existing translations...", "green"))
-            run_command(f"msgmerge --update {PO_FILE} {POT_FILE}")
-        else:
-            print(f"⚠️ Arquivo {PO_FILE} não encontrado. Criando um novo.")
+        # Updating the .po file without losing previous translations
+        if os.path.exists(find_file("messages.po", LOCALES_DIR,)):
+            message: str = _("Updating existing translations...")
+            print(color_text(f"📦 {message}", "green"))
+            po_files = find_file("messages.po", LOCALES_DIR, list_return=True)
+            for po_file in po_files:
+                run_command(f"msgmerge --update {po_file} {POT_FILE}")
 
-        # Compilando o arquivo .mo
-        print(color_text("📦 Compiling .mo file...", "green"))
-        run_command(f"msgfmt -o {MO_FILE} {PO_FILE}")
+        else:
+            message: str = _("File not found:")
+            message_: str = _("Creating a new")
+            print(f"⚠️ {message} {PO_FILE}. {message_}")
+
+        # Compiling the .mo file
+        message: str = _("Compiling .mo file...")
+        print(color_text(f"📦 {message}", "green"))
+        po_files = find_file("messages.po", LOCALES_DIR, list_return=True)
+        mo_files = find_file("messages.mo", LOCALES_DIR, list_return=True)
+        for mo_file, po_file in zip(mo_files, po_files):
+            run_command(f"msgfmt -o {mo_file} {po_file}")
+
+        # Removing the .pot file
         run_command(f"rm {POT_FILE}")
 
-        # Removendo arquivos .po~
+        # Remove files .po~
         if find_file("messages.po~", LOCALES_DIR):
             os.remove(find_file("messages.po~", LOCALES_DIR))
 
-        print(color_text("✅ Translations updated successfully!", "green"))
+        message: str = _("Translations updated successfully!")
+        print(color_text(f"✅ {message}", "green"))
 
 
 if __name__ == "__main__":

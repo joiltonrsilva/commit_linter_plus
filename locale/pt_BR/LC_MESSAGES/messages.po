@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-18 15:37-0300\n"
+"POT-Creation-Date: 2025-02-19 17:23-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,6 +16,63 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: update_translations.py:115
+#, fuzzy
+msgid "Error executing command"
+msgstr "Erro ao adicionar mudanças"
+
+#: update_translations.py:132
+msgid "Invalid language"
+msgstr "Linguagem inválida"
+
+#: update_translations.py:135
+msgid "Adding language"
+msgstr "Adicionando linguagem"
+
+#: update_translations.py:144
+msgid "Language already exists"
+msgstr ""
+
+#: update_translations.py:155 update_translations.py:192
+msgid "No Python files found for extraction"
+msgstr ""
+
+#: update_translations.py:167
+msgid "Language added successfully!"
+msgstr ""
+
+#: update_translations.py:179
+msgid "Invalid command"
+msgstr "Comando inválido"
+
+#: update_translations.py:186
+msgid "Python files found:"
+msgstr "Arquivos Python encontrados:"
+
+#: update_translations.py:197
+msgid "Extracting strings to .pot file..."
+msgstr ""
+
+#: update_translations.py:203
+msgid "Updating existing translations..."
+msgstr ""
+
+#: update_translations.py:210
+msgid "File not found:"
+msgstr ""
+
+#: update_translations.py:211
+msgid "Creating a new"
+msgstr ""
+
+#: update_translations.py:215
+msgid "Compiling .mo file..."
+msgstr ""
+
+#: update_translations.py:229
+msgid "Translations updated successfully!"
+msgstr ""
 
 #: task_commit/init.py:61
 msgid "❌ .git/hooks directory not found. Please run inside a Git repository."
@@ -27,83 +84,87 @@ msgstr ""
 msgid "✅ Commit-msg hook successfully configured!"
 msgstr "✅ Hook Commit-msg configurado com sucesso!"
 
-#: task_commit/core.py:23
+#: task_commit/core.py:24
 msgid "y"
 msgstr "s"
 
-#: task_commit/core.py:24
+#: task_commit/core.py:25
 msgid "n"
 msgstr "n"
 
-#: task_commit/core.py:26
+#: task_commit/core.py:27
 msgid "Starting commit process"
 msgstr "Iniciando processo de commit"
 
-#: task_commit/core.py:36
+#: task_commit/core.py:37
 msgid "No changes to commit"
 msgstr "Nenhuma mudança para commit"
 
-#: task_commit/core.py:43
+#: task_commit/core.py:44
 msgid "Do you want to add all changes"
 msgstr "Deseja adicionar todas as mudanças"
 
-#: task_commit/core.py:62
+#: task_commit/core.py:63
 msgid "Manually add the changes and run the command again"
 msgstr "Adicione manualmente as mudanças e execute o comando novamente"
 
-#: task_commit/core.py:72 task_commit/core.py:181 task_commit/core.py:226
+#: task_commit/core.py:73 task_commit/core.py:193 task_commit/core.py:238
 msgid "Invalid option"
 msgstr "Opção inválida"
 
-#: task_commit/core.py:90
+#: task_commit/core.py:92
 msgid "Choose commit type"
 msgstr "Escolha o tipo de commit"
 
-#: task_commit/core.py:102
+#: task_commit/core.py:109
 msgid "Invalid commit type"
 msgstr "Tipo de commit inválido"
 
-#: task_commit/core.py:111
+#: task_commit/core.py:114
+msgid "Process interrupted. Exiting..."
+msgstr ""
+
+#: task_commit/core.py:123
 msgid "Which module was changed? (example: core, api, models): "
 msgstr "Qual módulo foi alterado? (exemplo: core, api, models): "
 
-#: task_commit/core.py:126
+#: task_commit/core.py:138
 msgid "Module is mandatory"
 msgstr "Módulo é obrigatório"
 
-#: task_commit/core.py:134
+#: task_commit/core.py:146
 msgid "Enter commit message"
 msgstr "Digite a mensagem do commit"
 
-#: task_commit/core.py:141
+#: task_commit/core.py:153
 msgid "Commit message is mandatory"
 msgstr "Mensagem de commit é obrigatória"
 
-#: task_commit/core.py:152
+#: task_commit/core.py:164
 msgid "Error: Git username not set"
 msgstr "Erro: Nome de usuário do Git não configurado"
 
-#: task_commit/core.py:161
+#: task_commit/core.py:173
 msgid "Do you want to send the commit"
 msgstr "Deseja fazer commit para o repositório"
 
-#: task_commit/core.py:188
+#: task_commit/core.py:200
 msgid "Commit canceled"
 msgstr "Commit cancelado"
 
-#: task_commit/core.py:192
+#: task_commit/core.py:204
 msgid "Do you want to push to the repository"
 msgstr "Deseja fazer push para o repositório"
 
-#: task_commit/core.py:222
+#: task_commit/core.py:234
 msgid "Push canceled"
 msgstr "Push cancelado"
 
-#: task_commit/core.py:233
+#: task_commit/core.py:245
 msgid "Leaving..."
 msgstr "Saindo..."
 
-#: task_commit/core.py:238
+#: task_commit/core.py:250
 msgid "Unexpected error"
 msgstr "Erro inesperado"
 
