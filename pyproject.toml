@@ -9,7 +9,7 @@ repository = "https://github.com/WalefyHG/Task_Commit"
 packages = [{ include = "task_commit" }]
 
 include = ["locale/**/*"]
-exclude = ["update_translations.py"]
+exclude = ["manage_translations.py"]
 
 [tool.poetry.dependencies]
 python = "^3.11"
