@@ -12,7 +12,7 @@ from .utils import (
     get_git_user,
     handle_git_flow,
     is_git_flow,
-    get_translator,
+    get_translator
 )
 from .utils import remove_excess_spaces
 
@@ -101,8 +101,10 @@ def git_commit():  # noqa: PLR0912, PLR0915
                 
                 answers = inquirer.prompt(questions)
                 
+                if not answers:
+                    raise KeyboardInterrupt
+                
                 if answers and 'commit_type' in answers:
-                    # Buscar o valor do tipo de commit selecionado
                     selected_commit_type = next(commit['value'] for commit in commit_type_choices if commit['name'] == answers['commit_type'])
                     return selected_commit_type
                 else:
@@ -113,7 +115,12 @@ def git_commit():  # noqa: PLR0912, PLR0915
             except KeyboardInterrupt:
                 message = _('Process interrupted. Exiting...')
                 print(color_text(f'🚩 {message}', 'red'))
-                sys.exit(0) 
+                return sys.exit(0)
+
+            except Exception as error:
+                message = _('Unexpected error occurred')
+                print(color_text(f'❌ {message}: {error}', 'red'))
+                return sys.exit(1)
             
 
         commit_type = commit_type_input()
