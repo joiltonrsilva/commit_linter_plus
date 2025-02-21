@@ -4,7 +4,7 @@ import re
 import subprocess
 
 
-def get_translator(domain='messages', locale_dir=None, lang=None):
+def get_translator(domain="messages", locale_dir=None, lang=None):
     """
     Returns the configured `_()` translation function.
 
@@ -14,10 +14,10 @@ def get_translator(domain='messages', locale_dir=None, lang=None):
     :return: `_()` function for translation
     """
     if locale_dir is None:
-        locale_dir = os.path.join(os.path.dirname(__file__), '../locale')
+        locale_dir = os.path.join(os.path.dirname(__file__), "../locales")
 
     if lang is None:
-        lang = os.getenv('LANG', 'en').split('.')[0]  # Get system language
+        lang = os.getenv("LANG", "en").split(".")[0]  # Get system language
 
     try:
         translation = gettext.translation(
@@ -52,13 +52,13 @@ def color_text(text, color) -> str:
     Text with the color applied.
     """
     colors = {
-        'red': '\033[91m',
-        'green': '\033[92m',
-        'yellow': '\033[93m',
-        'blue': '\033[94m',
-        'magenta': '\033[95m',
-        'cyan': '\033[96m',
-        'reset': '\033[0m',
+        "red": "\033[91m",
+        "green": "\033[92m",
+        "yellow": "\033[93m",
+        "blue": "\033[94m",
+        "magenta": "\033[95m",
+        "cyan": "\033[96m",
+        "reset": "\033[0m",
     }
     return f'{colors.get(color, colors["reset"])}{text}{colors["reset"]}'
 
@@ -72,18 +72,18 @@ def get_git_user() -> str:
     str or None
     Git username if found, otherwise None.
     """
-    message: str = ''
+    message: str = ""
     try:
-        message = _('Git user is required')
+        message = _("Git user is required")
         username = subprocess.check_output(
-            ['git', 'config', 'user.name'], text=True
+            ["git", "config", "user.name"], text=True
         ).strip()
         if not username:
-            raise ValueError(f'{message}')
+            raise ValueError(f"{message}")
         return username
     except (subprocess.CalledProcessError, ValueError) as e:
-        message = _('Error getting user from Git')
-        print(color_text(f'❌ {message}: {e}', 'red'))
+        message = _("Error getting user from Git")
+        print(color_text(f"❌ {message}: {e}", "red"))
         return None
 
 
@@ -98,14 +98,14 @@ def check_git_status() -> bool:
     """
     try:
         status = subprocess.check_output(
-            ['git', 'status', '--porcelain'], text=True
+            ["git", "status", "--porcelain"], text=True
         ).strip()
         return bool(status)
     except subprocess.CalledProcessError as e:
         message: str = _(
-            'Error checking Git status'
+            "Error checking Git status"
         )  # Erro ao verificar status do Git  # noqa: E501
-        print(color_text(f'❌ {message}: {e}', 'red'))
+        print(color_text(f"❌ {message}: {e}", "red"))
         return False
 
 
@@ -119,10 +119,10 @@ def get_git_status() -> str | None:
         String with the formatted status of the Git repository
         if found, otherwise None.
     """
-    message: str = ''
+    message: str = ""
     try:
         output = subprocess.check_output(
-            ['git', 'status', '--porcelain'],
+            ["git", "status", "--porcelain"],
             text=True,
         ).strip()
 
@@ -134,54 +134,53 @@ def get_git_status() -> str | None:
         untracked_files = []
 
         # Process each line of output
-        for line in output.split('\n'):
+        for line in output.split("\n"):
             status_code, file_path = line[:2].strip(), line[2:].strip()
 
             if status_code in {
-                'M',
-                'A',
-                'D',
-                'R',
+                "M",
+                "A",
+                "D",
+                "R",
             }:  # Modified, Added, Deleted, Renamed (Staged)  # noqa: E501
-                changes_staged.append(f'{file_path}')
+                changes_staged.append(f"{file_path}")
             elif status_code in {
-                ' M',
-                ' D',
+                " M",
+                " D",
             }:  # Modified or deleted (Not Staged)  # noqa: E501
-                changes_not_staged.append(f'{file_path}')
-            elif status_code == '??':  # Untracked files
-                untracked_files.append(f'{file_path}')
+                changes_not_staged.append(f"{file_path}")
+            elif status_code == "??":  # Untracked files
+                untracked_files.append(f"{file_path}")
 
         # Format the output
         result = []
         if changes_not_staged:
-            message = _('Changes not staged')
-            result.append(color_text(f'📋 {message}:', 'yellow'))
+            message = _("Changes not staged")
+            result.append(color_text(f"📋 {message}:", "yellow"))
             result.extend(
-                color_text(f'   🎯 {item}', 'yellow')
-                for item in changes_not_staged
+                color_text(f"   🎯 {item}", "yellow") for item in changes_not_staged
             )
-            result.append('')
+            result.append("")
         if changes_staged:
-            message = _('Changes staged')
-            result.append(color_text(f'📝 {message}:', 'green'))
+            message = _("Changes staged")
+            result.append(color_text(f"📝 {message}:", "green"))
             result.extend(
-                color_text(f'   🎯 {item}', 'green') for item in changes_staged
+                color_text(f"   🎯 {item}", "green") for item in changes_staged
             )
-            result.append('')
+            result.append("")
         if untracked_files:
-            message = _('Untracked files')
-            result.append(color_text(f'❌ {message}:', 'red'))
+            message = _("Untracked files")
+            result.append(color_text(f"❌ {message}:", "red"))
             result.extend(
-                color_text(f'   🎯 {item}', 'red') for item in untracked_files
+                color_text(f"   🎯 {item}", "red") for item in untracked_files
             )
-            result.append('')
+            result.append("")
 
-        return '\n'.join(result)
+        return "\n".join(result)
 
     except subprocess.CalledProcessError as e:
-        message = _('Error checking Git status')
-        return color_text(f'❌ {message}: {e}', 'red')
+        message = _("Error checking Git status")
+        return color_text(f"❌ {message}: {e}", "red")
 
 
 def is_git_flow():
@@ -194,11 +193,11 @@ def is_git_flow():
     True if the repository uses Git Flow, False otherwise.
     """
     try:
-        subprocess.check_output(['git', 'flow', 'config'], text=True)
+        subprocess.check_output(["git", "flow", "config"], text=True)
         return True
     except subprocess.CalledProcessError as e:
-        message: str = _('Gitflow not installed, but push is successful')
-        print(color_text(f'❌ {message}: {e}', 'red'))
+        message: str = _("Gitflow not installed, but push is successful")
+        print(color_text(f"❌ {message}: {e}", "red"))
         return False
 
 
@@ -213,11 +212,11 @@ def get_current_branch():
     """
     try:
         return subprocess.check_output(
-            ['git', 'rev-parse', '--abbrev-ref', 'HEAD'], text=True
+            ["git", "rev-parse", "--abbrev-ref", "HEAD"], text=True
         ).strip()
     except subprocess.CalledProcessError as e:
-        message: str = _('Error getting current branch')
-        print(color_text(f'❌ {message}: {e}', 'red'))
+        message: str = _("Error getting current branch")
+        print(color_text(f"❌ {message}: {e}", "red"))
         return None
 
 
@@ -229,14 +228,14 @@ def add_changes():
     subprocess.CalledProcessError
     If there was an error while adding the changes.
     """
-    message: str = ''
+    message: str = ""
     try:
-        subprocess.run(['git', 'add', '.'], check=True)
-        message = _('All changes added')
-        print(color_text(f'✔️ {message}.', 'green'))
+        subprocess.run(["git", "add", "."], check=True)
+        message = _("All changes added")
+        print(color_text(f"✔️ {message}.", "green"))
     except subprocess.CalledProcessError as e:
-        message = _('Error adding changes')
-        print(color_text(f'❌ {message}: {e}', 'red'))
+        message = _("Error adding changes")
+        print(color_text(f"❌ {message}: {e}", "red"))
         raise
 
 
@@ -261,18 +260,16 @@ def create_commit(commit_type, module, commit_message, git_user):
     subprocess.CalledProcessError
     If there was an error while performing the commit.
     """
-    message: str = ''
-    full_commit_message = f'{commit_type}({module}): {commit_message}'
-    updated_commit_message = f'{full_commit_message} (👤: {git_user})'.lower()
+    message: str = ""
+    full_commit_message = f"{commit_type}({module}): {commit_message}"
+    updated_commit_message = f"{full_commit_message} (👤: {git_user})".lower()
     try:
-        subprocess.run(
-            ['git', 'commit', '-m', updated_commit_message], check=True
-        )
-        message = _('Commit successful')
-        print(color_text(f'✅ {message}!\n', 'green'))
+        subprocess.run(["git", "commit", "-m", updated_commit_message], check=True)
+        message = _("Commit successful")
+        print(color_text(f"✅ {message}!\n", "green"))
     except subprocess.CalledProcessError as e:
-        message = _('Error committing')
-        print(color_text(f'❌ {message}: {e}', 'red'))
+        message = _("Error committing")
+        print(color_text(f"❌ {message}: {e}", "red"))
         raise
 
 
@@ -299,32 +296,28 @@ def handle_git_flow(branch):
     action = (
         input(
             color_text(
-                f'🛠️ {message}? (publish/finish): ',
-                'blue',
+                f"🛠️ {message}? (publish/finish): ",
+                "blue",
             )
         )
         .strip()
         .lower()
     )
-    if action == 'publish':
+    if action == "publish":
         try:
-            subprocess.run(
-                ['git', 'flow', branch.split('/')[0], 'publish'], check=True
-            )
+            subprocess.run(["git", "flow", branch.split("/")[0], "publish"], check=True)
         except subprocess.CalledProcessError as e:
-            message: str = _('Error publishing branch')
-            print(color_text(f'❌ {message}: {e}', 'red'))
-    elif action == 'finish':
+            message: str = _("Error publishing branch")
+            print(color_text(f"❌ {message}: {e}", "red"))
+    elif action == "finish":
         try:
-            subprocess.run(
-                ['git', 'flow', branch.split('/')[0], 'finish'], check=True
-            )
+            subprocess.run(["git", "flow", branch.split("/")[0], "finish"], check=True)
         except subprocess.CalledProcessError as e:
-            message: str = _('Error finalizing branch')
-            print(color_text(f'❌ {message}: {e}', 'red'))
+            message: str = _("Error finalizing branch")
+            print(color_text(f"❌ {message}: {e}", "red"))
     else:
-        message: str = _('Invalid action')
-        print(color_text(f'❌ {message}!', 'red'))
+        message: str = _("Invalid action")
+        print(color_text(f"❌ {message}!", "red"))
 
 
 def execute_push(branch):
@@ -341,10 +334,10 @@ def execute_push(branch):
     If there is an error during the push.
     """
     try:
-        subprocess.run(['git', 'push', 'origin', branch], check=True)
+        subprocess.run(["git", "push", "origin", branch], check=True)
     except subprocess.CalledProcessError as e:
-        message: str = _('Error when pushing')
-        print(color_text(f'❌ {message}: {e}', 'red'))
+        message: str = _("Error when pushing")
+        print(color_text(f"❌ {message}: {e}", "red"))
 
 
 def remove_excess_spaces(text: str) -> str:
@@ -362,9 +355,9 @@ def remove_excess_spaces(text: str) -> str:
     Text without excess spaces.
     """
     if text is None:
-        return ''
+        return ""
 
-    text_without_extra_space: str = re.sub(r'\s+', ' ', text)
+    text_without_extra_space: str = re.sub(r"\s+", " ", text)
     return text_without_extra_space.strip()
 
 

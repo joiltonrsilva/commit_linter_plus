@@ -1,0 +1,47 @@
+[project]
+name = "task-commit"
+version = "0.1.12"
+description = "Tool for formatting commits following the Conventional Commits pattern and recognizing Git Flow branches."
+authors = [
+    {name = "Walefy Lima", email = "walefylima@gmail.com"}
+]
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/WalefyHG/Task_Commit"
+packages = [{ include = "task_commit" }]
+
+include = ["locales/**/*"]
+exclude = ["manage_translations.py"]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+poetry = "^2.0.1"
+inquirer = "^3.4.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest-mock = "^3.14.0"
+ruff = "^0.9.4"
+pytest = "^6.2.5"
+pre-commit = "^4.1.0"
+bandit = "^1.8.3"
+
+
+[tool.poetry.scripts]
+task_commit = "task_commit.main:main"
+task_commit_init = "task_commit.init:setup_git_hook"
+
+[tool.ruff]
+line-length = 79
+
+[tool.ruff.lint]
+preview = true
+extend-select = ["E501"]
+select = ['I', 'F', 'E', 'W', 'PL', 'PT']
+
+[tool.ruff.format]
+preview = true
+quote-style = 'single'
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
