@@ -28,7 +28,7 @@ task_commit
 
 # To Development:
 
-Download the repository: https://github.com/luizalberto/task-commit
+Download the repository: https://github.com/WalefyHG/Task_Commit.git
 
 ## Install Poetry:
 
@@ -57,7 +57,7 @@ poetry install
 
 ```
 
-# Install Pre-commit:
+## Install Pre-commit:
 
 ```bash
 poetry run pre-commit install
