@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-20 22:19-0300\n"
+"POT-Creation-Date: 2025-02-21 08:14-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,163 +17,173 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: manage_translations.py:117
+#: manage_translations.py:125
 msgid "Error executing command"
 msgstr "Error al ejecutar el comando"
 
-#: manage_translations.py:129
+#: manage_translations.py:140
 msgid "Choose a language"
 msgstr "Elige un idioma"
 
-#: manage_translations.py:155
+#: manage_translations.py:171
 msgid "Adding language"
 msgstr "Agregando idioma"
 
-#: manage_translations.py:164
+#: manage_translations.py:180
 msgid "Language already exists"
 msgstr "El idioma ya existe"
 
-#: manage_translations.py:175 manage_translations.py:207
+#: manage_translations.py:211 manage_translations.py:260
 msgid "No Python files found for extraction"
 msgstr "No se encontraron archivos de Python para la extracción"
 
-#: manage_translations.py:192
+#: manage_translations.py:245
 msgid "Language added successfully!"
 msgstr "¡Idioma agregado con éxito!"
 
-#: manage_translations.py:196
+#: manage_translations.py:249
 msgid "Updating translations..."
 msgstr "Actualizando traducciones..."
 
-#: manage_translations.py:201
+#: manage_translations.py:254
 msgid "Python files found:"
 msgstr "Archivos de Python encontrados:"
 
-#: manage_translations.py:212
+#: manage_translations.py:265
 msgid "Extracting strings to .pot file..."
 msgstr "Extrayendo cadenas al archivo .pot..."
 
-#: manage_translations.py:218
+#: manage_translations.py:276
 msgid "Updating existing translations..."
 msgstr "Actualizando traducciones existentes..."
 
-#: manage_translations.py:225
+#: manage_translations.py:287
 msgid "File not found:"
 msgstr "Archivo no encontrado:"
 
-#: manage_translations.py:226
+#: manage_translations.py:288
 msgid "Creating a new"
 msgstr "Creando un nuevo"
 
-#: manage_translations.py:231
+#: manage_translations.py:297
 msgid "Compiling .mo file..."
 msgstr "Compilando archivo .mo..."
 
-#: manage_translations.py:248
+#: manage_translations.py:326
 msgid "Translations updated successfully!"
 msgstr "¡Traducciones actualizadas con éxito!"
 
-#: manage_translations.py:261
+#: manage_translations.py:339
 msgid "Invalid command"
 msgstr "Comando inválido"
 
-#: manage_translations.py:265
+#: manage_translations.py:343
 msgid "No arguments provided"
 msgstr "No se proporcionaron argumentos"
 
-#: task_commit/core.py:24
+#: task_commit/init.py:59
+msgid "❌ .git/hooks directory not found. Please run inside a Git repository."
+msgstr ""
+"❌ Directorio .git/hooks no encontrado. Por favor, ejecuta dentro de un "
+"repositorio Git."
+
+#: task_commit/init.py:68
+msgid "✅ Commit-msg hook successfully configured!"
+msgstr "✅ ¡Hook de commit-msg configurado con éxito!"
+
+#: task_commit/core.py:25
 msgid "y"
 msgstr "s"
 
-#: task_commit/core.py:25
+#: task_commit/core.py:26
 msgid "n"
 msgstr "n"
 
-#: task_commit/core.py:27
+#: task_commit/core.py:28
 msgid "Starting commit process"
 msgstr "Iniciando proceso de commit"
 
-#: task_commit/core.py:37
+#: task_commit/core.py:33
 msgid "No changes to commit"
 msgstr "No hay cambios para confirmar"
 
-#: task_commit/core.py:44
+#: task_commit/core.py:40
 msgid "Do you want to add all changes"
 msgstr "¿Quieres agregar todos los cambios?"
 
-#: task_commit/core.py:63
+#: task_commit/core.py:59
 msgid "Manually add the changes and run the command again"
 msgstr "Agrega los cambios manualmente y ejecuta el comando nuevamente"
 
-#: task_commit/core.py:73 task_commit/core.py:208 task_commit/core.py:253
+#: task_commit/core.py:69 task_commit/core.py:199 task_commit/core.py:239
 msgid "Invalid option"
 msgstr "Opción inválida"
 
-#: task_commit/core.py:80
+#: task_commit/core.py:76
 msgid "New functionality"
 msgstr "Nueva funcionalidad"
 
-#: task_commit/core.py:81
+#: task_commit/core.py:77
 msgid "Bug fix"
 msgstr "Corrección de errores"
 
-#: task_commit/core.py:82
+#: task_commit/core.py:78
 msgid "Code refactoring"
 msgstr "Refactorización de código"
 
-#: task_commit/core.py:83
+#: task_commit/core.py:79
 msgid "Documentation update"
 msgstr "Actualización de la documentación"
 
-#: task_commit/core.py:84
+#: task_commit/core.py:80
 msgid "Style changes"
 msgstr "Cambios de estilo"
 
-#: task_commit/core.py:85
+#: task_commit/core.py:81
 msgid "Performance improvements"
 msgstr "Mejoras de rendimiento"
 
-#: task_commit/core.py:86
+#: task_commit/core.py:82
 msgid "Test addition/correction"
 msgstr "Adición/corrección de pruebas"
 
-#: task_commit/core.py:87
+#: task_commit/core.py:83
 msgid "Configuration changes"
 msgstr "Cambios de configuración"
 
-#: task_commit/core.py:88
+#: task_commit/core.py:84
 msgid "Changes in continuous integration"
 msgstr "Cambios en la integración continua"
 
-#: task_commit/core.py:101
+#: task_commit/core.py:97
 msgid "Choose commit type"
 msgstr "Elige el tipo de commit"
 
-#: task_commit/core.py:120
+#: task_commit/core.py:124
 msgid "Invalid commit type"
 msgstr "Tipo de commit inválido"
 
-#: task_commit/core.py:125
+#: task_commit/core.py:129
 msgid "Process interrupted. Exiting..."
 msgstr "Proceso interrumpido. Saliendo..."
 
-#: task_commit/core.py:130
+#: task_commit/core.py:134
 msgid "Unexpected error occurred"
 msgstr "Ocurrió un error inesperado"
 
-#: task_commit/core.py:138
+#: task_commit/core.py:142
 msgid "Which module was changed? (example: core, api, models): "
 msgstr "¿Qué módulo fue cambiado? (ejemplo: core, api, models): "
 
-#: task_commit/core.py:153
+#: task_commit/core.py:157
 msgid "Module is mandatory"
 msgstr "El módulo es obligatorio"
 
-#: task_commit/core.py:161
+#: task_commit/core.py:165
 msgid "Enter commit message"
 msgstr "Ingresa el mensaje del commit"
 
-#: task_commit/core.py:168
+#: task_commit/core.py:170
 msgid "Commit message is mandatory"
 msgstr "El mensaje del commit es obligatorio"
 
@@ -181,39 +191,29 @@ msgstr "El mensaje del commit es obligatorio"
 msgid "Error: Git username not set"
 msgstr "Error: Nombre de usuario de Git no configurado"
 
-#: task_commit/core.py:188
+#: task_commit/core.py:184
 msgid "Do you want to send the commit"
 msgstr "¿Quieres enviar el commit?"
 
-#: task_commit/core.py:215
+#: task_commit/core.py:206
 msgid "Commit canceled"
 msgstr "Commit cancelado"
 
-#: task_commit/core.py:219
+#: task_commit/core.py:210
 msgid "Do you want to push to the repository"
 msgstr "¿Quieres hacer push al repositorio?"
 
-#: task_commit/core.py:249
+#: task_commit/core.py:235
 msgid "Push canceled"
 msgstr "Push cancelado"
 
-#: task_commit/core.py:260
+#: task_commit/core.py:246
 msgid "Leaving..."
 msgstr "Saliendo..."
 
-#: task_commit/core.py:265
+#: task_commit/core.py:251
 msgid "Unexpected error"
 msgstr "Error inesperado"
-
-#: task_commit/init.py:61
-msgid "❌ .git/hooks directory not found. Please run inside a Git repository."
-msgstr ""
-"❌ Directorio .git/hooks no encontrado. Por favor, ejecuta dentro de un "
-"repositorio Git."
-
-#: task_commit/init.py:71
-msgid "✅ Commit-msg hook successfully configured!"
-msgstr "✅ ¡Hook de commit-msg configurado con éxito!"
 
 #: task_commit/utils.py:77
 msgid "Git user is required"
@@ -223,62 +223,62 @@ msgstr "Se requiere un usuario de Git"
 msgid "Error getting user from Git"
 msgstr "Error al obtener el usuario de Git"
 
-#: task_commit/utils.py:105 task_commit/utils.py:162
+#: task_commit/utils.py:106 task_commit/utils.py:183
 msgid "Error checking Git status"
 msgstr "Error al verificar el estado de Git"
 
-#: task_commit/utils.py:144
+#: task_commit/utils.py:158
 msgid "Changes not staged"
 msgstr "Cambios no preparados"
 
-#: task_commit/utils.py:149
+#: task_commit/utils.py:166
 msgid "Changes staged"
 msgstr "Cambios preparados"
 
-#: task_commit/utils.py:154
+#: task_commit/utils.py:173
 msgid "Untracked files"
 msgstr "Archivos sin seguimiento"
 
-#: task_commit/utils.py:179
+#: task_commit/utils.py:200
 msgid "Gitflow not installed, but push is successful"
 msgstr "Gitflow no está instalado, pero el push fue exitoso"
 
-#: task_commit/utils.py:202
+#: task_commit/utils.py:219
 msgid "Error getting current branch"
 msgstr "Error al obtener la rama actual"
 
-#: task_commit/utils.py:218
+#: task_commit/utils.py:235
 msgid "All changes added"
 msgstr "Todos los cambios agregados"
 
-#: task_commit/utils.py:221
+#: task_commit/utils.py:238
 msgid "Error adding changes"
 msgstr "Error al agregar cambios"
 
-#: task_commit/utils.py:256
+#: task_commit/utils.py:271
 msgid "Commit successful"
 msgstr "Commit exitoso"
 
-#: task_commit/utils.py:259
+#: task_commit/utils.py:274
 msgid "Error committing"
 msgstr "Error al realizar el commit"
 
-#: task_commit/utils.py:283
+#: task_commit/utils.py:298
 msgid "Do you want to 'publish' or 'finish' this branch?"
 msgstr "¿Quieres 'publicar' o 'finalizar' esta rama?"
 
-#: task_commit/utils.py:301
+#: task_commit/utils.py:315
 msgid "Error publishing branch"
 msgstr "Error al publicar la rama"
 
-#: task_commit/utils.py:309
+#: task_commit/utils.py:323
 msgid "Error finalizing branch"
 msgstr "Error al finalizar la rama"
 
-#: task_commit/utils.py:312
+#: task_commit/utils.py:326
 msgid "Invalid action"
 msgstr "Acción inválida"
 
-#: task_commit/utils.py:332
+#: task_commit/utils.py:346
 msgid "Error when pushing"
 msgstr "Error al hacer push"

@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "task-commit"
-version = "0.1.11"
+version = "0.1.12"
 description = "Tool for formatting commits following the Conventional Commits pattern and recognizing Git Flow branches."
 authors = ["Walefy Lima <walefylima@gmail.com>"]
 license = "MIT"
@@ -20,6 +20,8 @@ inquirer = "^3.4.0"
 pytest-mock = "^3.14.0"
 ruff = "^0.9.4"
 pytest = "^6.2.5"
+pre-commit = "^4.1.0"
+bandit = "^1.8.3"
 
 [build-system]
 requires = ["poetry-core"]
@@ -36,9 +38,6 @@ line-length = 79
 preview = true
 extend-select = ["E501"]
 select = ['I', 'F', 'E', 'W', 'PL', 'PT']
-
-[tool.ruff.lint.pylint]
-max-nested-blocks = 10
 
 [tool.ruff.format]
 preview = true

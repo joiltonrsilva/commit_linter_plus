@@ -1,10 +1,10 @@
 import gettext
+import os
 import re
 import subprocess
-import os
 
 
-def get_translator(domain="messages", locale_dir=None, lang=None):
+def get_translator(domain='messages', locale_dir=None, lang=None):
     """
     Returns the configured `_()` translation function.
 
@@ -14,10 +14,10 @@ def get_translator(domain="messages", locale_dir=None, lang=None):
     :return: `_()` function for translation
     """
     if locale_dir is None:
-        locale_dir = os.path.join(os.path.dirname(__file__), "../locale")
+        locale_dir = os.path.join(os.path.dirname(__file__), '../locale')
 
     if lang is None:
-        lang = os.getenv("LANG", "en").split(".")[0]  # Get system language
+        lang = os.getenv('LANG', 'en').split('.')[0]  # Get system language
 
     try:
         translation = gettext.translation(
@@ -72,7 +72,7 @@ def get_git_user() -> str:
     str or None
     Git username if found, otherwise None.
     """
-    message: str = ""
+    message: str = ''
     try:
         message = _('Git user is required')
         username = subprocess.check_output(
@@ -102,7 +102,9 @@ def check_git_status() -> bool:
         ).strip()
         return bool(status)
     except subprocess.CalledProcessError as e:
-        message: str = _('Error checking Git status')  # Erro ao verificar status do Git
+        message: str = _(
+            'Error checking Git status'
+        )  # Erro ao verificar status do Git  # noqa: E501
         print(color_text(f'❌ {message}: {e}', 'red'))
         return False
 
@@ -114,11 +116,15 @@ def get_git_status() -> str | None:
     Returns
     -------
     str or None
-        String with the formatted status of the Git repository if found, otherwise None.
+        String with the formatted status of the Git repository
+        if found, otherwise None.
     """
     message: str = ''
     try:
-        output = subprocess.check_output(['git', 'status', '--porcelain'], text=True).strip()
+        output = subprocess.check_output(
+            ['git', 'status', '--porcelain'],
+            text=True,
+        ).strip()
 
         # if not output:
         #     return color_text("✔ No changes detected", "green")
@@ -128,35 +134,50 @@ def get_git_status() -> str | None:
         untracked_files = []
 
         # Process each line of output
-        for line in output.split("\n"):
+        for line in output.split('\n'):
             status_code, file_path = line[:2].strip(), line[2:].strip()
 
-            if status_code in ("M", "A", "D", "R"):  # Modified, Added, Deleted, Renamed (Staged)
-                changes_staged.append(f"{file_path}")
-            elif status_code in (" M", " D"):  # Modified or deleted (Not Staged)
-                changes_not_staged.append(f"{file_path}")
-            elif status_code == "??":  # Untracked files
-                untracked_files.append(f"{file_path}")
+            if status_code in {
+                'M',
+                'A',
+                'D',
+                'R',
+            }:  # Modified, Added, Deleted, Renamed (Staged)  # noqa: E501
+                changes_staged.append(f'{file_path}')
+            elif status_code in {
+                ' M',
+                ' D',
+            }:  # Modified or deleted (Not Staged)  # noqa: E501
+                changes_not_staged.append(f'{file_path}')
+            elif status_code == '??':  # Untracked files
+                untracked_files.append(f'{file_path}')
 
         # Format the output
         result = []
         if changes_not_staged:
             message = _('Changes not staged')
-            result.append(color_text(f"📋 {message}:", "yellow"))
-            result.extend(color_text(f"   🎯 {item}", "yellow") for item in changes_not_staged)
-            result.append("")
+            result.append(color_text(f'📋 {message}:', 'yellow'))
+            result.extend(
+                color_text(f'   🎯 {item}', 'yellow')
+                for item in changes_not_staged
+            )
+            result.append('')
         if changes_staged:
             message = _('Changes staged')
-            result.append(color_text(f"📝 {message}:", "green"))
-            result.extend(color_text(f"   🎯 {item}", "green") for item in changes_staged)
-            result.append("")
+            result.append(color_text(f'📝 {message}:', 'green'))
+            result.extend(
+                color_text(f'   🎯 {item}', 'green') for item in changes_staged
+            )
+            result.append('')
         if untracked_files:
             message = _('Untracked files')
-            result.append(color_text(f"❌ {message}:", "red"))
-            result.extend(color_text(f"   🎯 {item}", "red") for item in untracked_files)
-            result.append("")
+            result.append(color_text(f'❌ {message}:', 'red'))
+            result.extend(
+                color_text(f'   🎯 {item}', 'red') for item in untracked_files
+            )
+            result.append('')
 
-        return "\n".join(result)
+        return '\n'.join(result)
 
     except subprocess.CalledProcessError as e:
         message = _('Error checking Git status')
@@ -177,11 +198,7 @@ def is_git_flow():
         return True
     except subprocess.CalledProcessError as e:
         message: str = _('Gitflow not installed, but push is successful')
-        print(
-            color_text(
-                f'❌ {message}: {e}', 'red'
-            )
-        )
+        print(color_text(f'❌ {message}: {e}', 'red'))
         return False
 
 
@@ -246,9 +263,7 @@ def create_commit(commit_type, module, commit_message, git_user):
     """
     message: str = ''
     full_commit_message = f'{commit_type}({module}): {commit_message}'
-    updated_commit_message = (
-        f'{full_commit_message} (👤: {git_user})'.lower()
-    )
+    updated_commit_message = f'{full_commit_message} (👤: {git_user})'.lower()
     try:
         subprocess.run(
             ['git', 'commit', '-m', updated_commit_message], check=True
@@ -284,8 +299,7 @@ def handle_git_flow(branch):
     action = (
         input(
             color_text(
-                f"🛠️ {message}? "
-                '(publish/finish): ',
+                f'🛠️ {message}? (publish/finish): ',
                 'blue',
             )
         )
