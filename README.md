@@ -25,3 +25,57 @@ For commit:
 task_commit
 
 ```
+
+# To Development:
+
+Download the repository: https://github.com/luizalberto/task-commit
+
+## Install Poetry:
+
+```bash
+pip install poetry
+
+```
+
+## Change config poetry:
+```bash
+poetry config virtualenvs.in-project true
+
+```
+
+## Create virtual environment:
+
+```bash
+poetry shell
+
+```
+
+## Install dependencies:
+
+```bash
+poetry install
+
+```
+
+# Install Pre-commit:
+
+```bash
+poetry run pre-commit install
+
+```
+
+
+## Manager Translates:
+
+### Install new language:
+```bash
+python manage_translations.py addlanguage
+
+```
+
+### Update language:
+
+```bash
+python manage_translations.py update
+
+```
