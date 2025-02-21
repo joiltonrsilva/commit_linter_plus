@@ -1,5 +1,7 @@
 import sys
 
+import inquirer
+
 from .utils import (
     add_changes,
     check_git_status,
@@ -9,27 +11,22 @@ from .utils import (
     get_current_branch,
     get_git_status,
     get_git_user,
+    get_translator,
     handle_git_flow,
     is_git_flow,
-    get_translator,
+    remove_excess_spaces,
 )
-from .utils import remove_excess_spaces
 
 _ = get_translator()
 
 
 def git_commit():  # noqa: PLR0912, PLR0915
-    message: str = ""
+    message: str = ''
     message_yes: str = _('y')
     message_no: str = _('n')
     try:
         message = _('Starting commit process')
-        print(
-            color_text(
-                f'\n🚀 {message}. 🚀\n',
-                'cyan'
-            )
-        )
+        print(color_text(f'\n🚀 {message}. 🚀\n', 'cyan'))
 
         def check_status():
             if not check_git_status():
@@ -76,33 +73,67 @@ def git_commit():  # noqa: PLR0912, PLR0915
         check_status()
 
         def commit_type_input():
+            feat: str = _('New functionality')
+            fix: str = _('Bug fix')
+            refactor: str = _('Code refactoring')
+            docs: str = _('Documentation update')
+            style: str = _('Style changes')
+            perf: str = _('Performance improvements')
+            test: str = _('Test addition/correction')
+            chore: str = _('Configuration changes')
+            ci: str = _('Changes in continuous integration')
+
             commit_type_choices: list[str] = [
-                'feat',
-                'fix',
-                'chore',
-                'refactor',
-                'test',
-                'docs',
-                'style',
-                'ci',
-                'perf',
+                {'name': f'✨ feat - {feat}', 'value': 'feat'},
+                {'name': f'🐛 fix - {fix}', 'value': 'fix'},
+                {'name': f'🛠️ refactor - {refactor}', 'value': 'refactor'},
+                {'name': f'📖 docs - {docs}', 'value': 'docs'},
+                {'name': f'🎨 style - {style}', 'value': 'style'},
+                {'name': f'🚀 perf - {perf}', 'value': 'perf'},
+                {'name': f'✅ test - {test}', 'value': 'test'},
+                {'name': f'⚙️ chore - {chore}', 'value': 'chore'},
+                {'name': f'💚 ci - {ci}', 'value': 'ci'},
             ]
             message = _('Choose commit type')
-            commit_type = (
-                input(
-                    color_text(
-                        f'🎯 {message} {str(commit_type_choices)}: ',
-                        'blue',
+
+            try:
+                questions = [
+                    inquirer.List(
+                        'commit_type',
+                        message=message,
+                        choices=[
+                            commit['name'] for commit in commit_type_choices
+                        ],
+                        carousel=True,
+                    ),
+                ]
+
+                answers = inquirer.prompt(questions)
+
+                if not answers:
+                    raise KeyboardInterrupt
+
+                if answers and 'commit_type' in answers:
+                    selected_commit_type = next(
+                        commit['value']
+                        for commit in commit_type_choices
+                        if commit['name'] == answers['commit_type']
                     )
-                )
-                .strip()
-                .lower()
-            )
-            if commit_type not in commit_type_choices:
-                message = _('Invalid commit type')
-                print(color_text(f'❌ {message}', 'red'))
-                return commit_type_input()
-            return commit_type
+                    return selected_commit_type
+                else:
+                    message = _('Invalid commit type')
+                    print(color_text(f'❌ {message}', 'red'))
+                    return commit_type_input()
+
+            except KeyboardInterrupt:
+                message = _('Process interrupted. Exiting...')
+                print(color_text(f'🚩 {message}', 'red'))
+                return sys.exit(0)
+
+            except Exception as error:
+                message = _('Unexpected error occurred')
+                print(color_text(f'❌ {message}: {error}', 'red'))
+                return sys.exit(1)
 
         commit_type = commit_type_input()
 
@@ -133,15 +164,11 @@ def git_commit():  # noqa: PLR0912, PLR0915
         def commit_message_input():
             message = _('Enter commit message')
             commit_message = remove_excess_spaces(
-                    input(
-                    color_text(f'📝 {message}: ', 'green')
-                ).strip()
+                input(color_text(f'📝 {message}: ', 'green')).strip()
             )
             if not commit_message:
                 message = _('Commit message is mandatory')
-                print(
-                    color_text(f'❌ {message}!', 'red')
-                )
+                print(color_text(f'❌ {message}!', 'red'))
                 return commit_message_input()
             return commit_message
 
@@ -150,28 +177,19 @@ def git_commit():  # noqa: PLR0912, PLR0915
         git_user = get_git_user()
         if git_user is None:
             message = _('Error: Git username not set')
-            print(
-                color_text(
-                    f'❌ {message}!', 'red'
-                )
-            )
+            print(color_text(f'❌ {message}!', 'red'))
             return
 
         def send_commit_input():
             message = _('Do you want to send the commit')
-            send_commit = (
-                input(
-                    color_text(
-                        f'🚀 {message}? '
-                        f'(✅ {message_yes} / ❌ {message_no}) '
-                        f'[{message_yes}]: ',
-                        'yellow',
-                    )
+            send_commit = input(
+                color_text(
+                    f'🚀 {message}? '
+                    f'(✅ {message_yes} / ❌ {message_no}) '
+                    f'[{message_yes}]: ',
+                    'yellow',
                 )
-                .strip()
-                .lower()
-                or {message_yes}
-            )
+            ).strip().lower() or {message_yes}
 
             if send_commit == message_yes:
                 return True
@@ -190,19 +208,14 @@ def git_commit():  # noqa: PLR0912, PLR0915
 
         def push_input():
             message = _('Do you want to push to the repository')
-            push = (
-                input(
-                    color_text(
-                        f'🚀 {message}? '
-                        f'(✅ {message_yes} / ❌ {message_no}) '
-                        f'[{message_yes}]: ',
-                        'yellow',
-                    )
+            push = input(
+                color_text(
+                    f'🚀 {message}? '
+                    f'(✅ {message_yes} / ❌ {message_no}) '
+                    f'[{message_yes}]: ',
+                    'yellow',
                 )
-                .strip()
-                .lower()
-                or {message_yes}
-            )
+            ).strip().lower() or {message_yes}
 
             if push == message_yes:
                 current_branch = get_current_branch()
