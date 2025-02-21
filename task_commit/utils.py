@@ -353,6 +353,7 @@ def remove_excess_spaces(text: str) -> str:
     text_without_extra_space: str = re.sub(r'\s+', ' ', text)
     return text_without_extra_space.strip()
 
+
 def clear_screen(stdscr):
     """Limpar a tela do terminal"""
     stdscr.clear()

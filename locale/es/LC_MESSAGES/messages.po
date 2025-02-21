@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-20 17:11-0300\n"
+"POT-Creation-Date: 2025-02-20 22:19-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,9 +18,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: manage_translations.py:117
-#, fuzzy
 msgid "Error executing command"
-msgstr "Error al agregar cambios"
+msgstr "Error al ejecutar el comando"
 
 #: manage_translations.py:129
 msgid "Choose a language"
@@ -82,16 +81,6 @@ msgstr "Comando inválido"
 msgid "No arguments provided"
 msgstr "No se proporcionaron argumentos"
 
-#: task_commit/init.py:61
-msgid "❌ .git/hooks directory not found. Please run inside a Git repository."
-msgstr ""
-"❌ Directorio .git/hooks no encontrado. Por favor, ejecuta dentro de un "
-"repositorio Git."
-
-#: task_commit/init.py:71
-msgid "✅ Commit-msg hook successfully configured!"
-msgstr "✅ ¡Hook de commit-msg configurado con éxito!"
-
 #: task_commit/core.py:24
 msgid "y"
 msgstr "s"
@@ -116,69 +105,115 @@ msgstr "¿Quieres agregar todos los cambios?"
 msgid "Manually add the changes and run the command again"
 msgstr "Agrega los cambios manualmente y ejecuta el comando nuevamente"
 
-#: task_commit/core.py:73 task_commit/core.py:200 task_commit/core.py:245
+#: task_commit/core.py:73 task_commit/core.py:208 task_commit/core.py:253
 msgid "Invalid option"
 msgstr "Opción inválida"
 
-#: task_commit/core.py:92
+#: task_commit/core.py:80
+msgid "New functionality"
+msgstr "Nueva funcionalidad"
+
+#: task_commit/core.py:81
+msgid "Bug fix"
+msgstr "Corrección de errores"
+
+#: task_commit/core.py:82
+msgid "Code refactoring"
+msgstr "Refactorización de código"
+
+#: task_commit/core.py:83
+msgid "Documentation update"
+msgstr "Actualización de la documentación"
+
+#: task_commit/core.py:84
+msgid "Style changes"
+msgstr "Cambios de estilo"
+
+#: task_commit/core.py:85
+msgid "Performance improvements"
+msgstr "Mejoras de rendimiento"
+
+#: task_commit/core.py:86
+msgid "Test addition/correction"
+msgstr "Adición/corrección de pruebas"
+
+#: task_commit/core.py:87
+msgid "Configuration changes"
+msgstr "Cambios de configuración"
+
+#: task_commit/core.py:88
+msgid "Changes in continuous integration"
+msgstr "Cambios en la integración continua"
+
+#: task_commit/core.py:101
 msgid "Choose commit type"
 msgstr "Elige el tipo de commit"
 
-#: task_commit/core.py:111
+#: task_commit/core.py:120
 msgid "Invalid commit type"
 msgstr "Tipo de commit inválido"
 
-#: task_commit/core.py:116
+#: task_commit/core.py:125
 msgid "Process interrupted. Exiting..."
 msgstr "Proceso interrumpido. Saliendo..."
 
-#: task_commit/core.py:121
+#: task_commit/core.py:130
 msgid "Unexpected error occurred"
 msgstr "Ocurrió un error inesperado"
 
-#: task_commit/core.py:130
+#: task_commit/core.py:138
 msgid "Which module was changed? (example: core, api, models): "
 msgstr "¿Qué módulo fue cambiado? (ejemplo: core, api, models): "
 
-#: task_commit/core.py:145
+#: task_commit/core.py:153
 msgid "Module is mandatory"
 msgstr "El módulo es obligatorio"
 
-#: task_commit/core.py:153
+#: task_commit/core.py:161
 msgid "Enter commit message"
 msgstr "Ingresa el mensaje del commit"
 
-#: task_commit/core.py:160
+#: task_commit/core.py:168
 msgid "Commit message is mandatory"
 msgstr "El mensaje del commit es obligatorio"
 
-#: task_commit/core.py:171
+#: task_commit/core.py:179
 msgid "Error: Git username not set"
 msgstr "Error: Nombre de usuario de Git no configurado"
 
-#: task_commit/core.py:180
+#: task_commit/core.py:188
 msgid "Do you want to send the commit"
 msgstr "¿Quieres enviar el commit?"
 
-#: task_commit/core.py:207
+#: task_commit/core.py:215
 msgid "Commit canceled"
 msgstr "Commit cancelado"
 
-#: task_commit/core.py:211
+#: task_commit/core.py:219
 msgid "Do you want to push to the repository"
 msgstr "¿Quieres hacer push al repositorio?"
 
-#: task_commit/core.py:241
+#: task_commit/core.py:249
 msgid "Push canceled"
 msgstr "Push cancelado"
 
-#: task_commit/core.py:252
+#: task_commit/core.py:260
 msgid "Leaving..."
 msgstr "Saliendo..."
 
-#: task_commit/core.py:257
+#: task_commit/core.py:265
 msgid "Unexpected error"
 msgstr "Error inesperado"
+
+#: task_commit/init.py:61
+msgid "❌ .git/hooks directory not found. Please run inside a Git repository."
+msgstr ""
+"❌ Directorio .git/hooks no encontrado. Por favor, ejecuta dentro de un "
+"repositorio Git."
+
+#: task_commit/init.py:71
+msgid "✅ Commit-msg hook successfully configured!"
+msgstr "✅ ¡Hook de commit-msg configurado con éxito!"
 
 #: task_commit/utils.py:77
 msgid "Git user is required"

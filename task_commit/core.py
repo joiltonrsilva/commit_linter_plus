@@ -77,20 +77,29 @@ def git_commit():  # noqa: PLR0912, PLR0915
         check_status()
 
         def commit_type_input():
-            
+            feat: str = _('New functionality')
+            fix: str = _('Bug fix')
+            refactor: str = _('Code refactoring')
+            docs: str = _('Documentation update')
+            style: str = _('Style changes')
+            perf: str = _('Performance improvements')
+            test: str = _('Test addition/correction')
+            chore: str = _('Configuration changes')
+            ci: str = _('Changes in continuous integration')
+
             commit_type_choices: list[str] = [
-                { 'name': '✨ feat - Nova funcionalidade', 'value': 'feat' },
-                { 'name': '🐛 fix - Correção de bug', 'value': 'fix' },
-                { 'name': '🛠️ refactor - Refatoração de código', 'value': 'refactor' },
-                { 'name': '📖 docs - Atualização de documentação', 'value': 'docs' },
-                { 'name': '🎨 style - Alterações de estilo', 'value': 'style' },
-                { 'name': '🚀 perf - Melhorias de performance', 'value': 'perf' },
-                { 'name': '✅ test - Adição/Correção de testes', 'value': 'test' },
-                { 'name': '⚙️ chore - Mudanças na configuração', 'value': 'chore' },
-                { 'name': '💚 ci - Alterações na integração contínua', 'value': 'ci' }
+                {'name': f'✨ feat - {feat}', 'value': 'feat'},
+                {'name': f'🐛 fix - {fix}', 'value': 'fix'},
+                {'name': f'🛠️ refactor - {refactor}', 'value': 'refactor'},
+                {'name': f'📖 docs - {docs}', 'value': 'docs'},
+                {'name': f'🎨 style - {style}', 'value': 'style'},
+                {'name': f'🚀 perf - {perf}', 'value': 'perf'},
+                {'name': f'✅ test - {test}', 'value': 'test'},
+                {'name': f'⚙️ chore - {chore}', 'value': 'chore'},
+                {'name': f'💚 ci - {ci}', 'value': 'ci'}
             ]
             message = _('Choose commit type')
-    
+
             try:
                 questions = [
                     inquirer.List('commit_type', 
@@ -98,12 +107,12 @@ def git_commit():  # noqa: PLR0912, PLR0915
                                 choices=[commit['name'] for commit in commit_type_choices],
                                 carousel=True),
                 ]
-                
+
                 answers = inquirer.prompt(questions)
-                
+
                 if not answers:
                     raise KeyboardInterrupt
-                
+
                 if answers and 'commit_type' in answers:
                     selected_commit_type = next(commit['value'] for commit in commit_type_choices if commit['name'] == answers['commit_type'])
                     return selected_commit_type
@@ -111,7 +120,7 @@ def git_commit():  # noqa: PLR0912, PLR0915
                     message = _('Invalid commit type')
                     print(color_text(f'❌ {message}', 'red'))
                     return commit_type_input()
-            
+
             except KeyboardInterrupt:
                 message = _('Process interrupted. Exiting...')
                 print(color_text(f'🚩 {message}', 'red'))
@@ -121,7 +130,6 @@ def git_commit():  # noqa: PLR0912, PLR0915
                 message = _('Unexpected error occurred')
                 print(color_text(f'❌ {message}: {error}', 'red'))
                 return sys.exit(1)
-            
 
         commit_type = commit_type_input()
 
