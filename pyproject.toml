@@ -1,18 +1,47 @@
 [project]
 name = "task-commit"
-version = "0.1.12"
+dynamic = [ "version" ]
+
 description = "Tool for formatting commits following the Conventional Commits pattern and recognizing Git Flow branches"
 authors = [
     {name = "Walefy Lima", email = "walefylima@gmail.com"},
     {name = "Joilton Silva", email = "dev.joiltonrsilva@proton.me"},
 ]
-license = {text = "MIT"}
+license = { file = "LICENSE" }
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
     "inquirer (>=3.4.0,<4.0.0)"
 ]
 
+[project.urls]
+homepage = "https://python-poetry.org/"
+repository = "https://github.com/WalefyHG/Task_Commit"
+documentation = "https://python-poetry.org/docs/"
+"Bug Tracker" = "https://github.com/WalefyHG/Task_Commit/issues"
+
+classifiers = [
+    "Topic :: Software Development :: Build Tools",
+    "Topic :: Software Development :: Libraries :: Python Modules"
+]
+
+[tool.poetry]
+version = "0.1.12"  # base version
+
+include = [
+    { path = "locales", format = ["sdist", "wheel"] },
+]
+
+
+[tool.poetry.scripts]
+task_commit = "task_commit.main:main"
+task_commit_init = "task_commit.init:setup_git_hook"
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.9.7"
+pytest = "^8.3.4"
+pre-commit = "^4.1.0"
+bandit = "^1.8.3"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
