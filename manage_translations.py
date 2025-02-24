@@ -7,7 +7,11 @@ import inquirer
 
 from task_commit.utils import color_text, get_translator
 
-LOCALES_DIR = 'locale'
+LOCALES_DIR = locale_dir = os.path.join(
+    os.path.dirname(os.path.abspath(__file__)),
+    'task_commit',
+    'locales',
+)
 POT_FILE = os.path.join(LOCALES_DIR, 'messages.pot')
 PO_FILE = os.path.join(LOCALES_DIR, 'pt_BR/LC_MESSAGES/messages.po')
 MO_FILE = os.path.join(LOCALES_DIR, 'pt_BR/LC_MESSAGES/messages.mo')
