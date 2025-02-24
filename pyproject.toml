@@ -22,7 +22,7 @@ dependencies = [
 
 
 [tool.poetry]
-version = "0.1.13"  # base version
+version = "0.1.15"  # base version
 
 classifiers = [
     "Topic :: Software Development :: Build Tools",

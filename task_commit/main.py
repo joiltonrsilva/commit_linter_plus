@@ -1,5 +1,8 @@
 from .core import git_commit
+import sys
+import io
 
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 
 def main():
     """
