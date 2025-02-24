@@ -9,6 +9,7 @@ from task_commit.utils import color_text, get_translator
 
 LOCALES_DIR = locale_dir = os.path.join(
     os.path.dirname(os.path.abspath(__file__)),
+    'task_commit',
     'locale',
 )
 POT_FILE = os.path.join(LOCALES_DIR, 'messages.pot')
