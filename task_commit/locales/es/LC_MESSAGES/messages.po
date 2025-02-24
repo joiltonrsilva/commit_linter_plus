@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-21 15:02-0300\n"
+"POT-Creation-Date: 2025-02-24 08:47-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: manage_translations.py:125
+#: manage_translations.py:126
 msgid "Error executing command"
 msgstr "Error al ejecutar el comando"
 
@@ -25,59 +25,59 @@ msgstr "Error al ejecutar el comando"
 msgid "Choose a language"
 msgstr "Elige un idioma"
 
-#: manage_translations.py:171
+#: manage_translations.py:169
 msgid "Adding language"
 msgstr "Agregando idioma"
 
-#: manage_translations.py:180
+#: manage_translations.py:178
 msgid "Language already exists"
 msgstr "El idioma ya existe"
 
-#: manage_translations.py:211 manage_translations.py:260
+#: manage_translations.py:209 manage_translations.py:258
 msgid "No Python files found for extraction"
 msgstr "No se encontraron archivos de Python para la extracción"
 
-#: manage_translations.py:245
+#: manage_translations.py:243
 msgid "Language added successfully!"
 msgstr "¡Idioma agregado con éxito!"
 
-#: manage_translations.py:249
+#: manage_translations.py:247
 msgid "Updating translations..."
 msgstr "Actualizando traducciones..."
 
-#: manage_translations.py:254
+#: manage_translations.py:252
 msgid "Python files found:"
 msgstr "Archivos de Python encontrados:"
 
-#: manage_translations.py:265
+#: manage_translations.py:263
 msgid "Extracting strings to .pot file..."
 msgstr "Extrayendo cadenas al archivo .pot..."
 
-#: manage_translations.py:276
+#: manage_translations.py:274
 msgid "Updating existing translations..."
 msgstr "Actualizando traducciones existentes..."
 
-#: manage_translations.py:287
+#: manage_translations.py:285
 msgid "File not found:"
 msgstr "Archivo no encontrado:"
 
-#: manage_translations.py:288
+#: manage_translations.py:286
 msgid "Creating a new"
 msgstr "Creando un nuevo"
 
-#: manage_translations.py:297
+#: manage_translations.py:295
 msgid "Compiling .mo file..."
 msgstr "Compilando archivo .mo..."
 
-#: manage_translations.py:326
+#: manage_translations.py:324
 msgid "Translations updated successfully!"
 msgstr "¡Traducciones actualizadas con éxito!"
 
-#: manage_translations.py:339
+#: manage_translations.py:337
 msgid "Invalid command"
 msgstr "Comando inválido"
 
-#: manage_translations.py:343
+#: manage_translations.py:341
 msgid "No arguments provided"
 msgstr "No se proporcionaron argumentos"
 
@@ -215,70 +215,70 @@ msgstr "Saliendo..."
 msgid "Unexpected error"
 msgstr "Error inesperado"
 
-#: task_commit/utils.py:79
+#: task_commit/utils.py:78
 msgid "Git user is required"
 msgstr "Se requiere un usuario de Git"
 
-#: task_commit/utils.py:87
+#: task_commit/utils.py:86
 msgid "Error getting user from Git"
 msgstr "Error al obtener el usuario de Git"
 
-#: task_commit/utils.py:108 task_commit/utils.py:185
+#: task_commit/utils.py:107 task_commit/utils.py:183
 msgid "Error checking Git status"
 msgstr "Error al verificar el estado de Git"
 
-#: task_commit/utils.py:160
+#: task_commit/utils.py:159
 msgid "Changes not staged"
 msgstr "Cambios no preparados"
 
-#: task_commit/utils.py:168
+#: task_commit/utils.py:166
 msgid "Changes staged"
 msgstr "Cambios preparados"
 
-#: task_commit/utils.py:175
+#: task_commit/utils.py:173
 msgid "Untracked files"
 msgstr "Archivos sin seguimiento"
 
-#: task_commit/utils.py:202
+#: task_commit/utils.py:200
 msgid "Gitflow not installed, but push is successful"
 msgstr "Gitflow no está instalado, pero el push fue exitoso"
 
-#: task_commit/utils.py:221
+#: task_commit/utils.py:219
 msgid "Error getting current branch"
 msgstr "Error al obtener la rama actual"
 
-#: task_commit/utils.py:237
+#: task_commit/utils.py:235
 msgid "All changes added"
 msgstr "Todos los cambios agregados"
 
-#: task_commit/utils.py:240
+#: task_commit/utils.py:238
 msgid "Error adding changes"
 msgstr "Error al agregar cambios"
 
-#: task_commit/utils.py:273
+#: task_commit/utils.py:269
 msgid "Commit successful"
 msgstr "Commit exitoso"
 
-#: task_commit/utils.py:276
+#: task_commit/utils.py:272
 msgid "Error committing"
 msgstr "Error al realizar el commit"
 
-#: task_commit/utils.py:300
+#: task_commit/utils.py:296
 msgid "Do you want to 'publish' or 'finish' this branch?"
 msgstr "¿Quieres 'publicar' o 'finalizar' esta rama?"
 
-#: task_commit/utils.py:317
+#: task_commit/utils.py:311
 msgid "Error publishing branch"
 msgstr "Error al publicar la rama"
 
-#: task_commit/utils.py:325
+#: task_commit/utils.py:317
 msgid "Error finalizing branch"
 msgstr "Error al finalizar la rama"
 
-#: task_commit/utils.py:328
+#: task_commit/utils.py:320
 msgid "Invalid action"
 msgstr "Acción inválida"
 
-#: task_commit/utils.py:348
+#: task_commit/utils.py:340
 msgid "Error when pushing"
 msgstr "Error al hacer push"

@@ -1,6 +1,4 @@
 include README.md
 include LICENSE
-recursive-include locales *
-include locales *
-
+recursive-include task_commit/locales *
 

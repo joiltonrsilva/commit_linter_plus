@@ -15,21 +15,22 @@ dependencies = [
 ]
 
 [project.urls]
-homepage = "https://python-poetry.org/"
-repository = "https://github.com/WalefyHG/Task_Commit"
-documentation = "https://python-poetry.org/docs/"
+"homepage" = "https://python-poetry.org/"
+"repository" = "https://github.com/WalefyHG/Task_Commit"
+"documentation" = "https://python-poetry.org/docs/"
 "Bug Tracker" = "https://github.com/WalefyHG/Task_Commit/issues"
+
+
+[tool.poetry]
+version = "0.1.12"  # base version
 
 classifiers = [
     "Topic :: Software Development :: Build Tools",
     "Topic :: Software Development :: Libraries :: Python Modules"
 ]
 
-[tool.poetry]
-version = "0.1.12"  # base version
-
 include = [
-    { path = "locales", format = ["sdist", "wheel"] },
+    { path = "task_commit/locales/**/*", format = ["sdist", "wheel"] },
 ]
 
 
@@ -42,6 +43,18 @@ ruff = "^0.9.7"
 pytest = "^8.3.4"
 pre-commit = "^4.1.0"
 bandit = "^1.8.3"
+
+[tool.ruff]
+line-length = 79
+
+[tool.ruff.lint]
+preview = true
+extend-select = ["E501"]
+select = ['I', 'F', 'E', 'W', 'PL', 'PT']
+
+[tool.ruff.format]
+preview = true
+quote-style = 'single'
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
