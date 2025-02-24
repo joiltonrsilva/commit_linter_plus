@@ -5,23 +5,12 @@ import subprocess
 
 
 def get_translator(domain='messages', locale_dir=None, lang=None):
-    """
-    Returns the configured `_()` translation function.
-
-    :param domain: Name of the translation file (without extension)
-    :param locale_dir: Directory where the translation files are stored
-    :param lang: Desired language (e.g. 'pt_BR', 'en')
-    :return: `_()` function for translation
-    """
     if locale_dir is None:
         locale_dir = os.path.join(
             os.path.dirname(os.path.abspath(__file__)),
-            'task_commit',
-            'locales',
-        )
-
+            'locale',
+        )        
     print(locale_dir)
-
     if lang is None:
         lang = os.getenv('LANG', 'en').split('.')[0]  # Get system language
 
@@ -35,6 +24,7 @@ def get_translator(domain='messages', locale_dir=None, lang=None):
         return translation.gettext  # Returns the translation function `_()`
     except FileNotFoundError:
         return lambda s: s  # If no translation is found, return original text
+    # If no translation is found, return original text
 
 
 _ = get_translator()
