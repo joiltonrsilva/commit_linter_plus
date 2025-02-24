@@ -10,7 +10,6 @@ def get_translator(domain='messages', locale_dir=None, lang=None):
             os.path.dirname(os.path.abspath(__file__)),
             'locale',
         )        
-    print(locale_dir)
     if lang is None:
         lang = os.getenv('LANG', 'en').split('.')[0]  # Get system language
 
