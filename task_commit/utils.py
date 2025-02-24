@@ -14,7 +14,11 @@ def get_translator(domain='messages', locale_dir=None, lang=None):
     :return: `_()` function for translation
     """
     if locale_dir is None:
-        locale_dir = os.path.join(os.path.dirname(__file__), '../locale')
+        locale_dir = os.path.join(
+            os.path.dirname(os.path.abspath(__file__)),
+            'task_commit',
+            'locales',
+        )        
 
     if lang is None:
         lang = os.getenv('LANG', 'en').split('.')[0]  # Get system language
