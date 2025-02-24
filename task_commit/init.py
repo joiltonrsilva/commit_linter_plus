@@ -27,32 +27,32 @@ HOOK_SCRIPT = f"""#!/bin/sh
 COMMIT_MSG_FILE=$1
 COMMIT_MSG=$(cat "$COMMIT_MSG_FILE")
 
-# Permitir commits que começam com "!" para ignorar validação
+
 if echo "$COMMIT_MSG" | grep -qE '^!'; then
     exit 0
 fi
 
-# Verifica se a mensagem de commit está vazia
+
 if [ -z "$COMMIT_MSG" ]; then
     echo "❌ Commit message cannot be empty!"
     exit 1
 fi
 
-# Validação da mensagem de commit usando regex corretamente
+
 if ! echo "$COMMIT_MSG" | grep -E "^(feat|fix|chore|refactor|test|docs|style|ci|perf)(\\([a-zA-Z0-9_\\-]+\\))?: .{{1,72}}$|^.{1,72}$"; then
     echo "❌ Invalid commit message! Use Conventional Commits pattern."
     echo "{TYPES_DESCRIPTION}"
     exit 1
 fi
 
-# Obtém usuário Git
+
 GIT_USER=$(git config --get user.name)
 [ -z "$GIT_USER" ] && GIT_USER="Unknown User"
 
-# Obtém a branch atual
+
 CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 
-# Se for uma branch do Git Flow, adiciona Co-Author automaticamente
+
 if echo "$CURRENT_BRANCH" | grep -Eq "^(feature|hotfix|release)/"; then
     echo "\\nCo-authored-by: $GIT_USER" >> "$COMMIT_MSG_FILE"
 fi
