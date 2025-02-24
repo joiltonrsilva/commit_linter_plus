@@ -16,11 +16,11 @@ COMMIT_REGEX = r"^(feat|fix|chore|refactor|test|docs|style|ci|perf)(\([a-zA-Z0-9
 
 TYPES_DESCRIPTION = """
 ✅ Conventional Commit Examples:
-  - feat(api): add user authentication
-  - fix(ui): correct button alignment
-  - chore(deps): update dependency versions
-  - refactor(core): optimize database queries
-  - docs(readme): update installation guide
+    - feat(api): add user authentication
+    - fix(ui): correct button alignment
+    - chore(deps): update dependency versions
+    - refactor(core): optimize database queries
+    - docs(readme): update installation guide
 """
 
 HOOK_SCRIPT = f"""#!/bin/sh
