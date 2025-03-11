@@ -1,6 +1,7 @@
 import sys
 
 import inquirer
+from prompt_toolkit import HTML, prompt
 
 from .utils import (
     add_changes,
@@ -143,12 +144,7 @@ def git_commit():  # noqa: PLR0912, PLR0915
             )
             module = remove_excess_spaces(
                 (
-                    input(
-                        color_text(
-                            f'🗂️ {message}',
-                            'magenta',
-                        )
-                    )
+                    prompt(HTML(f'<ansimagenta>🗂️ {message} </ansimagenta>'))
                     .strip()
                     .lower()
                 )
@@ -164,7 +160,7 @@ def git_commit():  # noqa: PLR0912, PLR0915
         def commit_message_input():
             message = _('Enter commit message')
             commit_message = remove_excess_spaces(
-                input(color_text(f'📝 {message}: ', 'green')).strip()
+                prompt(HTML(f'<ansigreen>📝 {message}: </ansigreen>')).strip()
             )
             if not commit_message:
                 message = _('Commit message is mandatory')
