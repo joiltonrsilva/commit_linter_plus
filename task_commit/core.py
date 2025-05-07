@@ -1,3 +1,4 @@
+import subprocess
 import sys
 
 import inquirer
@@ -34,42 +35,61 @@ def git_commit():  # noqa: PLR0912, PLR0915
                 message = _('No changes to commit')
                 print(color_text(f'✅ {message}.', 'green'))
                 return sys.exit(0)
-            git_status = get_git_status()
-            if git_status:
-                print(color_text(git_status, 'yellow'))
 
-            message = _('Do you want to add all changes')
-            add_all = (
-                input(
-                    color_text(
-                        f'📌 {message}? '
-                        f'(✅ {message_yes} / ❌ {message_no}) '
-                        f'[{message_yes}]: ',
-                        'yellow',
-                    )
+        git_status = get_git_status()
+        if git_status:
+            print(color_text(git_status, 'yellow'))
+
+        message = _('Do you want to add all changes')
+        add_all = (
+            input(
+                color_text(
+                    f'📌 {message}? '
+                    f'(✅ {message_yes} / ❌ {message_no}) '
+                    f'[{message_yes}]: ',
+                    'yellow',
                 )
-                .strip()
-                .lower()
-                or f'{message_yes}'
             )
+            .strip()
+            .lower()
+            or f'{message_yes}'
+        )
 
-            if add_all == message_yes:
-                add_changes()
-            if add_all == message_no:
-                message = _(
-                    'Manually add the changes and run the command again'
+        if add_all == message_yes:
+            try:
+                print(color_text(_('🔄 Pulling latest changes...'), 'cyan'))
+                result = subprocess.run(
+                    ['git', 'pull'],
+                    check=True,
+                    stdout=subprocess.PIPE,
+                    stderr=subprocess.PIPE,
+                    text=True,
                 )
-                print(
-                    color_text(
-                        f'❌ {message}.',
-                        'red',
-                    )
-                )
-                return sys.exit(0)
-            elif add_all not in {message_yes, message_no}:
-                message = _('Invalid option')
-                print(color_text(f'❌ {message}!', 'red'))
-                return check_status()
+                print(color_text(result.stdout, 'green'))
+
+            except subprocess.CalledProcessError as err:
+                stderr = err.stderr.strip()
+
+                if 'no tracking information' in stderr.lower():
+                    current_branch = get_current_branch()
+                    print(color_text('❌ O branch atual não está vinculado a um remoto.', 'red'))
+                    print(color_text(f'📌 Execute o seguinte comando para configurar o branch remoto:', 'yellow'))
+                    print(color_text(f'   git branch --set-upstream-to=origin/{current_branch} {current_branch}', 'cyan'))
+                    sys.exit(1)
+
+                print(color_text(_('❌ Conflito ou erro ao fazer pull!'), 'red'))
+                print(color_text(stderr, 'red'))
+                sys.exit(1)
+
+            add_changes()
+        elif add_all == message_no:
+            message = _('Manually add the changes and run the command again')
+            print(color_text(f'❌ {message}.', 'red'))
+            return sys.exit(0)
+        else:
+            message = _('Invalid option')
+            print(color_text(f'❌ {message}!', 'red'))
+            return check_status()
 
         check_status()
 
