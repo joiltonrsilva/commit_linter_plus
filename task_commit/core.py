@@ -57,7 +57,8 @@ def git_commit():  # noqa: PLR0912, PLR0915
 
         if add_all == message_yes:
             try:
-                print(color_text(_('🔄 Pulling latest changes...'), 'cyan'))
+                message: str = _('Pulling latest changes...')
+                print(color_text(f'🔄 {message}', 'cyan'))
                 result = subprocess.run(
                     ['git', 'pull'],
                     check=True,
@@ -72,12 +73,25 @@ def git_commit():  # noqa: PLR0912, PLR0915
 
                 if 'no tracking information' in stderr.lower():
                     current_branch = get_current_branch()
-                    print(color_text('❌ O branch atual não está vinculado a um remoto.', 'red'))
-                    print(color_text(f'📌 Execute o seguinte comando para configurar o branch remoto:', 'yellow'))
-                    print(color_text(f'   git branch --set-upstream-to=origin/{current_branch} {current_branch}', 'cyan'))
+                    message: str = _(
+                        'The current branch is not linked to a remote'
+                    )
+                    print(color_text(f'❌ {message}', 'red'))
+                    message: str = _(
+                        'Run the following command to configure the remote branch:'  # noqa: E501
+                    )
+                    print(color_text(f'📌 {message}', 'yellow'))
+                    print(
+                        color_text(
+                            '   git branch --set-upstream-to=origin/'
+                            f'{current_branch} {current_branch}',
+                            'cyan',
+                        )
+                    )
                     sys.exit(1)
 
-                print(color_text(_('❌ Conflito ou erro ao fazer pull!'), 'red'))
+                message: str = _('Conflict or error when pulling!')
+                print(color_text(f'❌ {message}', 'red'))
                 print(color_text(stderr, 'red'))
                 sys.exit(1)
 

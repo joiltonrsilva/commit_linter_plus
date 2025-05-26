@@ -1,18 +1,17 @@
 import os
 import sys
-import re
 
 from .utils import get_git_user, get_translator
 
 _ = get_translator()
 
-HOOKS_DIR = ".git/hooks"
-HOOK_NAME = "commit-msg"
+HOOKS_DIR = '.git/hooks'
+HOOK_NAME = 'commit-msg'
 HOOK_PATH = os.path.join(HOOKS_DIR, HOOK_NAME)
 GIT_USER = get_git_user()
 
 # Expressão regular ajustada para garantir compatibilidade no shell
-COMMIT_REGEX = r"^(feat|fix|chore|refactor|test|docs|style|ci|perf)(\([a-zA-Z0-9_\-]+\))?: .{1,72}$|^.{1,72}$"
+COMMIT_REGEX = r'^(feat|fix|chore|refactor|test|docs|style|ci|perf)(\([a-zA-Z0-9_\-]+\))?: .{1,72}$|^.{1,72}$'  # noqa: E501
 
 TYPES_DESCRIPTION = """
 ✅ Conventional Commit Examples:
@@ -39,7 +38,7 @@ if [ -z "$COMMIT_MSG" ]; then
 fi
 
 
-if ! echo "$COMMIT_MSG" | grep -E "^(feat|fix|chore|refactor|test|docs|style|ci|perf)(\\([a-zA-Z0-9_\\-]+\\))?: .{{1,72}}$|^.{1,72}$"; then
+if ! echo "$COMMIT_MSG" | grep -E "^(feat|fix|chore|refactor|test|docs|style|ci|perf)(\\([a-zA-Z0-9_\\-]+\\))?: .{{1,72}}$|^.{1, 72}$"; then
     echo "❌ Invalid commit message! Use Conventional Commits pattern."
     echo "{TYPES_DESCRIPTION}"
     exit 1
@@ -56,16 +55,21 @@ CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 if echo "$CURRENT_BRANCH" | grep -Eq "^(feature|hotfix|release)/"; then
     echo "\\nCo-authored-by: $GIT_USER" >> "$COMMIT_MSG_FILE"
 fi
-"""
+"""  # noqa: E501
+
 
 def setup_git_hook():
     """Configura o hook de commit-msg para validar mensagens."""
     if not os.path.exists(HOOKS_DIR):
-        print(_("❌ .git/hooks directory not found. Please run inside a Git repository."))
+        message: str = _(
+            '.git/hooks directory not found. Please run inside a Git repository.'  # noqa: E501
+        )
+        print(f'❌ {message}')
         sys.exit(1)
 
-    with open(HOOK_PATH, "w", encoding="utf-8") as hook_file:
+    with open(HOOK_PATH, 'w', encoding='utf-8') as hook_file:
         hook_file.write(HOOK_SCRIPT)
 
-    os.chmod(HOOK_PATH, 0o755)  # Torna o hook executável
-    print(_("✅ Commit-msg hook successfully configured!"))
+    os.chmod(HOOK_PATH, 0o755)  # Make the hook executable  # nosec
+    message: str = _('Commit-msg hook successfully configured!')
+    print(f'✅ {message}')
