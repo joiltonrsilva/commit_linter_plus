@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-24 10:59-0300\n"
+"POT-Creation-Date: 2025-05-26 09:41-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -81,140 +81,6 @@ msgstr "Comando inválido"
 msgid "No arguments provided"
 msgstr "Nenhum argumento fornecido"
 
-#: task_commit/init.py:64
-msgid "❌ .git/hooks directory not found. Please run inside a Git repository."
-msgstr ""
-"❌ Diretório .git/hooks não encontrado. Por favor, execute dentro de um "
-"repositório Git."
-
-#: task_commit/init.py:71
-msgid "✅ Commit-msg hook successfully configured!"
-msgstr "✅ Hook Commit-msg configurado com sucesso!"
-
-#: task_commit/core.py:25
-msgid "y"
-msgstr "s"
-
-#: task_commit/core.py:26
-msgid "n"
-msgstr "n"
-
-#: task_commit/core.py:28
-msgid "Starting commit process"
-msgstr "Iniciando processo de commit"
-
-#: task_commit/core.py:33
-msgid "No changes to commit"
-msgstr "Nenhuma mudança para commit"
-
-#: task_commit/core.py:40
-msgid "Do you want to add all changes"
-msgstr "Deseja adicionar todas as mudanças"
-
-#: task_commit/core.py:59
-msgid "Manually add the changes and run the command again"
-msgstr "Adicione manualmente as mudanças e execute o comando novamente"
-
-#: task_commit/core.py:69 task_commit/core.py:199 task_commit/core.py:239
-msgid "Invalid option"
-msgstr "Opção inválida"
-
-#: task_commit/core.py:76
-msgid "New functionality"
-msgstr "Nova funcionalidade"
-
-#: task_commit/core.py:77
-msgid "Bug fix"
-msgstr "Correção de bug"
-
-#: task_commit/core.py:78
-msgid "Code refactoring"
-msgstr "Refatoração de código"
-
-#: task_commit/core.py:79
-msgid "Documentation update"
-msgstr "Atualização de documentação"
-
-#: task_commit/core.py:80
-msgid "Style changes"
-msgstr "Alterações de estilo"
-
-#: task_commit/core.py:81
-msgid "Performance improvements"
-msgstr "Melhorias de desempenho"
-
-#: task_commit/core.py:82
-msgid "Test addition/correction"
-msgstr "Teste de adição/correção"
-
-#: task_commit/core.py:83
-msgid "Configuration changes"
-msgstr "Alterações de configuração"
-
-#: task_commit/core.py:84
-msgid "Changes in continuous integration"
-msgstr "Alterações na integração contínua"
-
-#: task_commit/core.py:97
-msgid "Choose commit type"
-msgstr "Escolha o tipo de commit"
-
-#: task_commit/core.py:124
-msgid "Invalid commit type"
-msgstr "Tipo de commit inválido"
-
-#: task_commit/core.py:129
-msgid "Process interrupted. Exiting..."
-msgstr "Processo interrompido. Saindo..."
-
-#: task_commit/core.py:134
-msgid "Unexpected error occurred"
-msgstr "Erro inesperado ocorrido"
-
-#: task_commit/core.py:142
-msgid "Which module was changed? (example: core, api, models): "
-msgstr "Qual módulo foi alterado? (exemplo: core, api, models): "
-
-#: task_commit/core.py:157
-msgid "Module is mandatory"
-msgstr "Módulo é obrigatório"
-
-#: task_commit/core.py:165
-msgid "Enter commit message"
-msgstr "Digite a mensagem do commit"
-
-#: task_commit/core.py:170
-msgid "Commit message is mandatory"
-msgstr "Mensagem de commit é obrigatória"
-
-#: task_commit/core.py:179
-msgid "Error: Git username not set"
-msgstr "Erro: Nome de usuário do Git não configurado"
-
-#: task_commit/core.py:184
-msgid "Do you want to send the commit"
-msgstr "Deseja fazer commit para o repositório"
-
-#: task_commit/core.py:206
-msgid "Commit canceled"
-msgstr "Commit cancelado"
-
-#: task_commit/core.py:210
-msgid "Do you want to push to the repository"
-msgstr "Deseja fazer push para o repositório"
-
-#: task_commit/core.py:235
-msgid "Push canceled"
-msgstr "Push cancelado"
-
-#: task_commit/core.py:246
-msgid "Leaving..."
-msgstr "Saindo..."
-
-#: task_commit/core.py:251
-msgid "Unexpected error"
-msgstr "Erro inesperado"
-
 #: task_commit/utils.py:72
 msgid "Git user is required"
 msgstr "Usuário do Git é obrigatório"
@@ -282,6 +148,156 @@ msgstr "Ação inválida"
 #: task_commit/utils.py:341
 msgid "Error when pushing"
 msgstr "Erro ao fazer push"
+
+#: task_commit/init.py:65
+msgid ".git/hooks directory not found. Please run inside a Git repository."
+msgstr ""
+"Diretório .git/hooks não encontrado. Por favor, execute dentro de um "
+"repositório Git."
+
+#: task_commit/init.py:74
+msgid "Commit-msg hook successfully configured!"
+msgstr "Hook Commit-msg configurado com sucesso!"
+
+#: task_commit/core.py:27
+msgid "y"
+msgstr "s"
+
+#: task_commit/core.py:28
+msgid "n"
+msgstr "n"
+
+#: task_commit/core.py:30
+msgid "Starting commit process"
+msgstr "Iniciando processo de commit"
+
+#: task_commit/core.py:35
+msgid "No changes to commit"
+msgstr "Nenhuma mudança para commit"
+
+#: task_commit/core.py:43
+msgid "Do you want to add all changes"
+msgstr "Deseja adicionar todas as mudanças"
+
+#: task_commit/core.py:60
+msgid "Pulling latest changes..."
+msgstr "Puxando as últimas alterações..."
+
+#: task_commit/core.py:77
+msgid "The current branch is not linked to a remote"
+msgstr "A ramificação atual não está vinculada a um remoto"
+
+#: task_commit/core.py:81
+msgid "Run the following command to configure the remote branch:"
+msgstr "Execute o seguinte comando para configurar a ramificação remota:"
+
+#: task_commit/core.py:93
+msgid "Conflict or error when pulling!"
+msgstr "Conflito ou erro ao baixar as mudanças!"
+
+#: task_commit/core.py:100
+msgid "Manually add the changes and run the command again"
+msgstr "Adicione manualmente as mudanças e execute o comando novamente"
+
+#: task_commit/core.py:104 task_commit/core.py:229 task_commit/core.py:269
+msgid "Invalid option"
+msgstr "Opção inválida"
+
+#: task_commit/core.py:111
+msgid "New functionality"
+msgstr "Nova funcionalidade"
+
+#: task_commit/core.py:112
+msgid "Bug fix"
+msgstr "Correção de bug"
+
+#: task_commit/core.py:113
+msgid "Code refactoring"
+msgstr "Refatoração de código"
+
+#: task_commit/core.py:114
+msgid "Documentation update"
+msgstr "Atualização de documentação"
+
+#: task_commit/core.py:115
+msgid "Style changes"
+msgstr "Alterações de estilo"
+
+#: task_commit/core.py:116
+msgid "Performance improvements"
+msgstr "Melhorias de desempenho"
+
+#: task_commit/core.py:117
+msgid "Test addition/correction"
+msgstr "Teste de adição/correção"
+
+#: task_commit/core.py:118
+msgid "Configuration changes"
+msgstr "Alterações de configuração"
+
+#: task_commit/core.py:119
+msgid "Changes in continuous integration"
+msgstr "Alterações na integração contínua"
+
+#: task_commit/core.py:132
+msgid "Choose commit type"
+msgstr "Escolha o tipo de commit"
+
+#: task_commit/core.py:159
+msgid "Invalid commit type"
+msgstr "Tipo de commit inválido"
+
+#: task_commit/core.py:164
+msgid "Process interrupted. Exiting..."
+msgstr "Processo interrompido. Saindo..."
+
+#: task_commit/core.py:169
+msgid "Unexpected error occurred"
+msgstr "Erro inesperado ocorrido"
+
+#: task_commit/core.py:177
+msgid "Which module was changed? (example: core, api, models): "
+msgstr "Qual módulo foi alterado? (exemplo: core, api, models): "
+
+#: task_commit/core.py:187
+msgid "Module is mandatory"
+msgstr "Módulo é obrigatório"
+
+#: task_commit/core.py:195
+msgid "Enter commit message"
+msgstr "Digite a mensagem do commit"
+
+#: task_commit/core.py:200
+msgid "Commit message is mandatory"
+msgstr "Mensagem de commit é obrigatória"
+
+#: task_commit/core.py:209
+msgid "Error: Git username not set"
+msgstr "Erro: Nome de usuário do Git não configurado"
+
+#: task_commit/core.py:214
+msgid "Do you want to send the commit"
+msgstr "Deseja fazer commit para o repositório"
+
+#: task_commit/core.py:236
+msgid "Commit canceled"
+msgstr "Commit cancelado"
+
+#: task_commit/core.py:240
+msgid "Do you want to push to the repository"
+msgstr "Deseja fazer push para o repositório"
+
+#: task_commit/core.py:265
+msgid "Push canceled"
+msgstr "Push cancelado"
+
+#: task_commit/core.py:276
+msgid "Leaving..."
+msgstr "Saindo..."
+
+#: task_commit/core.py:281
+msgid "Unexpected error"
+msgstr "Erro inesperado"
 
 #~ msgid "CI changes"
 #~ msgstr "Alterações na integração contínua"
